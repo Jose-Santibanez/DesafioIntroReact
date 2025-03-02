@@ -3,8 +3,8 @@ export const LoginUser = ()=>{
 
     return(
         <>
-            <Nav.Link href="#features">Log Out</Nav.Link>
-            <Nav.Link href="#pricing">Profile</Nav.Link> 
+            <Nav.Link href="#features"className="links">Log Out</Nav.Link>
+            <Nav.Link href="#pricing" className="links">Profile</Nav.Link> 
         </>
     )
     

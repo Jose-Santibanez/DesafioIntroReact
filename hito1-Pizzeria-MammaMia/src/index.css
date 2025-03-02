@@ -24,12 +24,8 @@ a:hover {
 }
 
 body {
-  
-
   display: flex;
   place-items: center;
- 
-  
   width: 10vw;
   min-height: 100vh;
 }
@@ -97,16 +93,22 @@ navbar{
 .barra .nav{
   width: 80vw;
 }
+.barra .nav .links:hover {
+  border: 1px solid ;
+  border-color: #646cff;
+} 
 .barra .total{
   display: flex;
-
-  
+}
+.barra .total img{
+  width: 22px;
 }
 .barra .total button{
   margin-right: 40px;
-  width: 120px;
+  width: 150px;
   color: white;
 }
+
 header{
   position: relative;
   grid-area: header;
@@ -154,4 +156,18 @@ main .card .botones{
   display: flex;
   justify-content: space-between;
 }
+main .card .botones img{
+  width: 24px;
+}
 
+footer{
+  grid-area: footer;
+  background-color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+footer p{
+  margin: 0 ;
+}
