@@ -7,8 +7,4 @@ export const LogoutUser = ()=>{
             <Nav.Link href="#pricing">Register</Nav.Link> 
         </>
     )
-    
-    /* 
-    
-    */
 }

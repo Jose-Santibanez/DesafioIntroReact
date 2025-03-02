@@ -6,7 +6,7 @@ export const NavBar = ()=> {
     const token = false;
     const logUser = token ? <LoginUser/>: <LogoutUser/>;
     return (
-        <div className="barra">
+        <navbar className="barra">
            <div> 
             <Navbar variant="dark" data-bs-theme="dark" className="nav">
                     <Container>
@@ -22,7 +22,7 @@ export const NavBar = ()=> {
             <Button variant="succes">Total: ${total}</Button>
             </div>
             
-        </div>
+        </navbar>
                 
     ) 
 } 

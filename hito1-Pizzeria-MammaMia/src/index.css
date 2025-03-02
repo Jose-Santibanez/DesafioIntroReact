@@ -73,16 +73,22 @@ button:focus-visible {
 .contenedor{
   display: grid;
   grid-template-columns: repeat(2,1fr);
-  grid-template-rows: 10% 1fr 2fr 10%;
+  grid-template-rows: 8% 1fr 2fr 10%;
+  grid-template-areas: 
+        "nav nav nav"
+        "header header header"
+        "main main main"
+        "footer footer footer";
   height: 100vh;
   min-width: 100vw;
   padding: 0;
  
   
 }
-.barra{
+navbar{
+  grid-area: nav;
   display: flex;
-  align-items: first baseline;
+  align-items: center;
   justify-content: space-between;
   width: 100vw;
   background-color: rgb(68, 66, 66);
@@ -97,7 +103,17 @@ button:focus-visible {
   
 }
 .barra .total button{
-  padding: 0;
+  margin-right: 40px;
   width: 120px;
   color: white;
 }
+header{
+  position: relative;
+  grid-area: header;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.5),  rgba(0, 0, 0, 0.5)), 
+  url("./Header.jpg"),center/cover, no-repeat;
+}
+
