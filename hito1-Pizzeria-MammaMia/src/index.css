@@ -76,11 +76,12 @@ button:focus-visible {
         "main main main"
         "footer footer footer";
   height: 100vh;
-  min-width: 100vw;
+  width: 100vw;
   padding: 0;
  
   
 }
+
 navbar{
   grid-area: nav;
   display: flex;
@@ -170,4 +171,39 @@ footer{
 }
 footer p{
   margin: 0 ;
+}
+
+.form-register{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #1a1a1a;
+  align-items: center;
+  background: no-repeat center/cover  url("./Header.jpg") ;
+}
+.form-contenedor{
+  width: 80vw;
+  margin: auto;
+  
+}
+.form-contenedor h1{
+  font-size: 3rem;
+  
+}
+.form{
+  border: 1px solid black;
+  min-width: 80vw;
+  margin: auto;
+  height: 50vh;
+  padding: 100px 10px 20px 20px;
+  background-color: rgba(192, 170, 170, 0.6);
+  font-size: 1.5rem;
+  font-weight: 630;
+  
+}
+
+.form-btn{
+  width: 280px;
 }
