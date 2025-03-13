@@ -84,7 +84,7 @@ export const FormRegistro = () => {
                             {error.repPass && <span className="obligatorios">{error.repPass}</span>}
                         </Form.Group>
                     </Row>
-                    <Button type="" size="lg" variant="outline-dark" 
+                    <Button type="submit" size="lg" variant="outline-dark" 
                     className="mt-4 form-btn" >Enviar</Button>
                 </Form>
             </div>
