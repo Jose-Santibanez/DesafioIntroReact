@@ -184,8 +184,9 @@ footer p{
   background: no-repeat center/cover  url("./Header.jpg") ;
 }
 .form-contenedor{
-  width: 80vw;
-  margin: auto;
+
+  max-width: 80vw;
+   
   
 }
 .form-contenedor h1{

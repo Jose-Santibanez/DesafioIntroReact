@@ -8,6 +8,7 @@ export const FormLogin = () => {
   const [error, setError] = useState("");
 
   const emailDefault = 'validaCorreo@email.cl'
+  const passwordDefault  = 'password';
 
   const validarData = (e) => {
     e.preventDefault(); // evitamos los comportamientos por defecto
@@ -15,10 +16,9 @@ export const FormLogin = () => {
     let errorTemps = {};
     if(!email.trim()) errorTemps.email = "Campo obligatorio";   
     else if(email !== emailDefault) errorTemps.email = "email no existe o es incorrecto"
-    if(!pass.trim()) errorTemps.pass = "Campo obligatorio"
-    else if(pass.length < 6) error.pass = "Contraseña debe tener mas de 6 caracteres"
-    else if( pass !== 'password') errorTemps.pass = "Contraseña incorrecta"
-
+    if(!pass.trim()) errorTemps.pass = "Campo obligatorio";
+    else if(pass.length < 6) errorTemps.pass = "Contraseña debe tener mas de 6 caracteres"
+    else if( pass !== passwordDefault) errorTemps.pass = "Contraseña incorrecta"
     setError(errorTemps)
   }
   return (
@@ -43,8 +43,13 @@ export const FormLogin = () => {
                         <Form.Label>Contraseña</Form.Label>
                     </Form.Group>
                     <Form.Group as={Col} md={8}>
-                        <Form.Control onChange={(e)=>e.target.value} placeholder="Ingrese contraseña"/>
+                        <Form.Control onChange={(e)=>setPass(e.target.value)} 
+                        type="text"  
+                        value={pass}
+                        placeholder="Ingrese contraseña"/>
+                        {error.pass && <span className="obligatorios">{error.pass}</span>}
                     </Form.Group>
+
                 </Row>
                 <Button type="submit" size="lg" variant="outline-dark" 
                     className="mt-4 form-btn">Enviar</Button>
