@@ -1,37 +1,51 @@
-import { useState } from "react";
-import { Form, Row, Col, Container, Button} from "react-bootstrap";
+import {  useState } from "react";
+import { Form, Row, Col, Button} from "react-bootstrap";
 
 export const FormRegistro = () => {
     const [nombre, setNombre] = useState("");
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("")
     const [repPass, setRepPass] = useState("");
+    const [error, setError] = useState({}); // se inicializa un objeto vacío para cada uno de los campos.
 
-    const validaNombre = (e) =>{
-        setNombre(e.target.value)
+    const validarData = (e) => {
+        e.preventDefault();
+        let errorTemps = {}; //declaramos un objeto vacio para los errores
+        
+        if(!nombre.trim())errorTemps.nombre = "el nombre es obligatorio";
+        if(!email.trim())errorTemps.email = "El email es obligario";
+        if(!pass.trim())errorTemps.pass = "La contraseña es obligatoria";
+        if(pass.length < 6)errorTemps.pass = "La contraseña debe tener más de 6 caracteres";
+        if(!repPass.trim())errorTemps.repPass = "Repetir la contraseña es obligatorio";
+        if(pass !== repPass)errorTemps.repPass = "Las contraseñas deben ser estrictamente identicas";
+
+        setError(errorTemps);
+       /*  if(setError !== 0){
+
+        } */
+        
     }
-    const validaEmail = (e) =>{
-        setEmail(e.target.value)
-    }
-    const validaPass = (e) =>{
-        setPass(e.target.value)
-    }
-    const validaRepPass = (e) =>{
-        setRepPass(e.target.value)
-    }
-    return (
+
+     return (
         <div className="form-register">
             <div className="form-contenedor"  >
-                
-                <Form className="form">
+
+                <Form className="form" onSubmit={validarData}>
                 <h1>Registro</h1>
-                    <Row className="mt-5"  >
+               
+                    <Row className="mt-2"  >
+                    
                         <Form.Group  as={Col} md={3}>
                             <Form.Label >Nombre</Form.Label>
                         
                         </Form.Group>
                         <Form.Group as={Col} md={8}>
-                        <Form.Control onChange={validaNombre} type="text" placeholder="Ingrese Nombre Completo"/>
+                        <Form.Control onChange={(e) => setNombre(e.target.value)} 
+                                      type="text" 
+                                      value={nombre} //componente controlado= 
+                                      placeholder="Ingrese Nombre Completo"
+                        />
+                         {error.nombre && <span className="obligatorios">{error.nombre}</span>}
                         </Form.Group>
                     </Row>
                     <Row className="mt-3">
@@ -39,7 +53,9 @@ export const FormRegistro = () => {
                             <Form.Label >Email</Form.Label> 
                         </Form.Group>
                         <Form.Group as={Col} md={8}>
-                            <Form.Control onChange={validaEmail} type="text" placeholder="Ingrese Email"/>
+                            <Form.Control onChange={(e) => setEmail(e.target.value)} 
+                                          type="text"     
+                                          placeholder="Ingrese Email"/>
                         </Form.Group>
                     </Row>
                     <Row className="mt-3">
@@ -47,18 +63,21 @@ export const FormRegistro = () => {
                             <Form.Label >Contraseña</Form.Label> 
                         </Form.Group>
                         <Form.Group as={Col} md={8}>
-                            <Form.Control onChange={validaPass} type="text" placeholder="Ingrese contraseña"/>
+                            <Form.Control onChange={(e)=> setPass(e.target.value)} 
+                                          type="text" 
+                                          placeholder="Ingrese contraseña"/>
                         </Form.Group>
                     </Row>
-                    <Row className="mt-3 pb-4" >
+                    <Row className="mt-3 pb-2" >
+                    
                     <Form.Group as={Col} md={3} >
                             <Form.Label >Repetir contraseña</Form.Label> 
                         </Form.Group>
                         <Form.Group as={Col} md={8}>
-                            <Form.Control onChange={validaRepPass} type="text" placeholder="Repetir contraseña"/>
+                            <Form.Control onChange={(e)=> setRepPass(e.target.value)} type="text" placeholder="Repetir contraseña"/>
                         </Form.Group>
                     </Row>
-                    <Button size="lg" variant="outline-dark" 
+                    <Button type="" size="lg" variant="outline-dark" 
                     className="mt-4 form-btn" >Enviar</Button>
                 </Form>
             </div>

@@ -89,7 +89,7 @@ navbar{
   justify-content: space-between;
   width: 100vw;
   background-color: rgb(68, 66, 66);
-  
+  min-height: 90px;
 }
 .barra .nav{
   width: 80vw;
@@ -196,14 +196,26 @@ footer p{
   border: 1px solid black;
   min-width: 80vw;
   margin: auto;
-  height: 50vh;
+  min-height:40vh;
   padding: 100px 10px 20px 20px;
-  background-color: rgba(192, 170, 170, 0.6);
+  background-color: rgba(108, 100, 100, 0.6);
   font-size: 1.5rem;
   font-weight: 630;
   
 }
+.form h1{
+
+  margin-bottom: 50px;
+
+}
 
 .form-btn{
   width: 280px;
+}
+
+.obligatorios{
+  color: red;
+  font-weight: 490;
+  display: block;
+  padding-top: 1px;
 }
