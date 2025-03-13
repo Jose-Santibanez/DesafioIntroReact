@@ -16,7 +16,7 @@ function App() {
       <Footer/>
       <Routes>
         <Route path="/" element={<Home/>} />
-        <Route path="/registroForm" element={<FormRegistro /> }/>
+        <Route path="/registroForm" element={<FormRegistro />}/>
         <Route path='/loginForm' element={<FormLogin />}></Route>
       </Routes>
       
