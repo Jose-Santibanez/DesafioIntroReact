@@ -5,6 +5,9 @@ import { Home } from './components/Home';
 import { Footer } from './components/Footer';
 import { Route, Routes } from 'react-router-dom';
 import { FormRegistro } from './components/FormRegistro';
+import { FormLogin } from './components/FormLogin';
+
+
 function App() {
   return  (
     <div className='contenedor'>
@@ -13,7 +16,8 @@ function App() {
       <Footer/>
       <Routes>
         <Route path="/" element={<Home/>} />
-        <Route path="/registroForm" element={<FormRegistro/> }/>
+        <Route path="/registroForm" element={<FormRegistro /> }/>
+        <Route path='/loginForm' element={<FormLogin />}></Route>
       </Routes>
       
     </div>

@@ -12,12 +12,12 @@ export const FormRegistro = () => {
         e.preventDefault();
         let errorTemps = {}; //declaramos un objeto vacio para los errores
         
-        if(!nombre.trim())errorTemps.nombre = "el nombre es obligatorio";
-        if(!email.trim())errorTemps.email = "El email es obligario";
-        if(!pass.trim())errorTemps.pass = "La contraseña es obligatoria";
-        if(pass.length < 6)errorTemps.pass = "La contraseña debe tener más de 6 caracteres";
-        if(!repPass.trim())errorTemps.repPass = "Repetir la contraseña es obligatorio";
-        if(pass !== repPass)errorTemps.repPass = "Las contraseñas deben ser estrictamente identicas";
+        if(!nombre.trim()) errorTemps.nombre = "el nombre es obligatorio";
+        if(!email.trim()) errorTemps.email = "El email es obligario";
+        if(!pass.trim()) errorTemps.pass = "La contraseña es obligatoria";
+        else if(pass.length < 6) errorTemps.pass = "La contraseña debe tener más de 6 caracteres";
+        if(!repPass.trim()) errorTemps.repPass = "Repetir la contraseña es obligatorio";
+        else if(pass !== repPass) errorTemps.repPass = "Las contraseñas deben ser estrictamente identicas";
 
         setError(errorTemps);
        /*  if(setError !== 0){
@@ -40,12 +40,12 @@ export const FormRegistro = () => {
                         
                         </Form.Group>
                         <Form.Group as={Col} md={8}>
-                        <Form.Control onChange={(e) => setNombre(e.target.value)} 
-                                      type="text" 
-                                      value={nombre} //componente controlado= 
-                                      placeholder="Ingrese Nombre Completo"
-                        />
-                         {error.nombre && <span className="obligatorios">{error.nombre}</span>}
+                            <Form.Control onChange={(e) => setNombre(e.target.value)} 
+                                        type="text" 
+                                        value={nombre} //componente controlado= 
+                                        placeholder="Ingrese Nombre Completo"
+                            />
+                            {error.nombre && <span className="obligatorios">{error.nombre}</span>}
                         </Form.Group>
                     </Row>
                     <Row className="mt-3">
@@ -54,9 +54,11 @@ export const FormRegistro = () => {
                         </Form.Group>
                         <Form.Group as={Col} md={8}>
                             <Form.Control onChange={(e) => setEmail(e.target.value)} 
-                                          type="text"     
+                                          type="text" 
+                                          value={email}    
                                           placeholder="Ingrese Email"/>
-                        </Form.Group>
+                            {error.email && <span className="obligatorios">{error.email}</span>}
+                        </Form.Group> 
                     </Row>
                     <Row className="mt-3">
                         <Form.Group as={Col} md={3}>
@@ -65,7 +67,9 @@ export const FormRegistro = () => {
                         <Form.Group as={Col} md={8}>
                             <Form.Control onChange={(e)=> setPass(e.target.value)} 
                                           type="text" 
+                                          value={pass}
                                           placeholder="Ingrese contraseña"/>
+                            {error.pass && <span className="obligatorios">{error.pass}</span>}
                         </Form.Group>
                     </Row>
                     <Row className="mt-3 pb-2" >
@@ -74,7 +78,10 @@ export const FormRegistro = () => {
                             <Form.Label >Repetir contraseña</Form.Label> 
                         </Form.Group>
                         <Form.Group as={Col} md={8}>
-                            <Form.Control onChange={(e)=> setRepPass(e.target.value)} type="text" placeholder="Repetir contraseña"/>
+                            <Form.Control onChange={(e)=> setRepPass(e.target.value)} 
+                                          type="text" 
+                                          placeholder="Repetir contraseña"/>
+                            {error.repPass && <span className="obligatorios">{error.repPass}</span>}
                         </Form.Group>
                     </Row>
                     <Button type="" size="lg" variant="outline-dark" 

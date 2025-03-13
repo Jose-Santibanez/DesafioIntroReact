@@ -4,7 +4,7 @@ export const LogoutUser = ()=>{
 
     return(
         <>
-            <Nav.Link href="#features" className="links">Login</Nav.Link>
+            <Nav.Link as={NavLink} to="/loginForm" className="links">Login</Nav.Link>
             <Nav.Link  as={NavLink} to="/registroForm" className="links">Register</Nav.Link> 
         </>
     )
