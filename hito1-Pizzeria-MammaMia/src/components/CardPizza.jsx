@@ -1,8 +1,9 @@
 import { Card, Button } from "react-bootstrap";
 
 
-export const CardPizza = ({img, name,ingredients, price })=>{
-    const ingredientes = ingredients.join(", ");
+export const CardPizza = ({key,img, name,ingredients, price })=>{
+    const ingredientes = ingredients;
+   
     return(
         <> 
           <Card className="card">
@@ -12,7 +13,8 @@ export const CardPizza = ({img, name,ingredients, price })=>{
                 <Card.Title>{name}</Card.Title>
                 <Card.Text className="card-text">
                     <p className="item-card-text titulo">Ingredientes:</p>
-                    <p className="item-card-text ingredientes"><img src="/pizza-icon.svg"/> {ingredientes}</p>
+                    <p className="item-card-text ingredientes"><img src="/pizza-icon.svg"/> {ingredientes.map((e)=>
+                         <li key={key}>{e}</li>)}</p>
                 </Card.Text>
             </Card.Body>
             <Card.Footer>
