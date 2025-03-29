@@ -6,7 +6,7 @@ import { Footer } from './components/Footer';
 import { Route, Routes } from 'react-router-dom';
 import { FormRegistro } from './components/FormRegistro';
 import { FormLogin } from './components/FormLogin';
-
+import { Cart } from './components/Cart';
 
 function App() {
   return  (
@@ -15,9 +15,10 @@ function App() {
       
       <Footer/>
       <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="/registroForm" element={<FormRegistro />}/>
+        <Route path='/' element={<Home/>} />
+        <Route path='/registroForm' element={<FormRegistro />}/>
         <Route path='/loginForm' element={<FormLogin />}></Route>
+        <Route path='/Cart' element={<Cart />}></Route>
       </Routes>
       
     </div>

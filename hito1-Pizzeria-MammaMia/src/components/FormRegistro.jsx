@@ -66,7 +66,7 @@ export const FormRegistro = () => {
                         </Form.Group>
                         <Form.Group as={Col} md={8}>
                             <Form.Control onChange={(e)=> setPass(e.target.value)} 
-                                          type="text" 
+                                          type="password" 
                                           value={pass}
                                           placeholder="Ingrese contraseña"/>
                             {error.pass && <span className="obligatorios">{error.pass}</span>}
@@ -79,7 +79,7 @@ export const FormRegistro = () => {
                         </Form.Group>
                         <Form.Group as={Col} md={8}>
                             <Form.Control onChange={(e)=> setRepPass(e.target.value)} 
-                                          type="text" 
+                                          type="password" 
                                           placeholder="Repetir contraseña"/>
                             {error.repPass && <span className="obligatorios">{error.repPass}</span>}
                         </Form.Group>
