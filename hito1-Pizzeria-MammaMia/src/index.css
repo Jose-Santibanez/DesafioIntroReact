@@ -82,7 +82,7 @@ button:focus-visible {
   
 }
 
-navbar{
+.barra {
   grid-area: nav;
   display: flex;
   align-items: center;
@@ -252,4 +252,40 @@ footer p{
   display: flex;
   flex-direction: column;
   max-width: 80%;
+}
+
+.contenedor-pizza{
+  width: 100vw;
+  height: 100vh;
+}
+.pizza{
+  width: 60%;
+  height: 100%;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+.pizza img{
+  width: 60%;
+  height: 50%;
+  margin: 0 auto;
+}
+.pizza .mini-pizza{
+  width: 0px;
+}
+.pizza .cotenedor-ingredientes{
+  width: 50;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+.pizza .ingredientes {
+  list-style-type: none;
+  padding-top: 10px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+
+
 }

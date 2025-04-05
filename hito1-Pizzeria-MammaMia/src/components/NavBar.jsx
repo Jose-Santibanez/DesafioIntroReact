@@ -15,7 +15,7 @@ export const NavBar = ()=> {
     const token = false;
     const logUser = token ? <LoginUser/>: <LogoutUser/>;
     return (
-        <navbar className="barra">
+        <div className="barra">
            <div> 
             <Navbar variant="dark" data-bs-theme="dark" className="nav">
                     <Container>
@@ -24,6 +24,7 @@ export const NavBar = ()=> {
                         <Nav className="me-auto" >
                             <Nav.Link as={NavLink} to="/" className="links links">Home</Nav.Link>
                             {logUser}
+                            <Nav.Link as={NavLink} to="/Pizza">Pizza</Nav.Link>
                         </Nav>
                     </Container>
             </Navbar>
@@ -32,7 +33,7 @@ export const NavBar = ()=> {
             <Button as={NavLink} to="/Cart" variant="succes"><img src="/carrito.svg"/> Total: ${sepTotal}</Button>
             </div>
             
-        </navbar>
+        </div>
                 
     ) ;
 } ;

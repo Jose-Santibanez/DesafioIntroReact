@@ -7,17 +7,22 @@ import { Route, Routes } from 'react-router-dom';
 import { FormRegistro } from './components/FormRegistro';
 import { FormLogin } from './components/FormLogin';
 import { Cart } from './components/Cart';
+import { Pizza } from './components/Pizza';
+
 
 function App() {
+  
+    
   return  (
     <div className='contenedor'>
-      <NavBar/>
+      <NavBar />
       
       <Footer/>
       <Routes>
-        <Route path='/' element={<Home/>} />
+        <Route path='/' element={<Home />} />
         <Route path='/registroForm' element={<FormRegistro />}/>
         <Route path='/loginForm' element={<FormLogin />}></Route>
+        <Route path='/Pizza' element={<Pizza />}></Route>
         <Route path='/Cart' element={<Cart />}></Route>
       </Routes>
       
