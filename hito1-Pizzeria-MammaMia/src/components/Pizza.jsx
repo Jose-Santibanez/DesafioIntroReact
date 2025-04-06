@@ -37,7 +37,8 @@ export const Pizza = () => {
                         </ul> 
                         <h1>{pizza.name}</h1>
                         <p>${pizza.price}</p>
-                        <p>{pizza.desc}</p>    
+                        <p>{pizza.desc}</p> 
+                        <button>Agregar</button>   
                 </div>
                     
             </div>
