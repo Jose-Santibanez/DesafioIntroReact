@@ -9,24 +9,27 @@ import { FormLogin } from './components/FormLogin';
 import { Cart } from './components/Cart';
 import { Pizza } from './components/Pizza';
 import { NotFound } from './components/NotFound';
+import { CartProvider } from './context/CartContext';
+
+
 
 function App() {
   
     
   return  (
     <div className='contenedor'>
-      <NavBar />
-      
-      <Footer/>
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/registroForm' element={<FormRegistro />}/>
-        <Route path='/loginForm' element={<FormLogin />}></Route>
-        <Route path='/Pizza' element={<Pizza />}></Route>
-        <Route path='/Cart' element={<Cart />}></Route>
-        <Route path='*' element={<NotFound />}></Route>
-      </Routes>
-      
+     <CartProvider>
+        <NavBar />
+        <Footer/>
+            <Routes>
+              <Route path='/' element={<Home />} />
+              <Route path='/registroForm' element={<FormRegistro />}/>
+              <Route path='/loginForm' element={<FormLogin />}></Route>
+              <Route path='/Pizza' element={<Pizza />}></Route>
+              <Route path='/Cart' element={<Cart />}></Route>
+              <Route path='*' element={<NotFound />}></Route>
+            </Routes>    
+     </CartProvider>  
     </div>
   )
   
