@@ -7,19 +7,18 @@ export const CartProvider = ({children})=> {
      
     const [pizza, setPizza] = useState([]);
     const [total, setTotal] = useState(0)
+    const [cart, setCart] = useState([])    
     
-    
-     const handlePrice = (itemPizza)=>{   
+     const handleItems = (itemPizza)=>{   
+        setCart([...cart,{itemPizza}]) 
         const precio = itemPizza.price;
-        calculaTotal(precio) 
+        calculaTotal(precio)
         }   
        
-
     const calculaTotal = (precio)=> {
         setTotal(prev => prev + precio)
-        
     }
-    console.log(total)
+    
     const api = "http://localhost:5000/api/pizzas/"
     
     const getData = async ()=> {
@@ -42,7 +41,7 @@ export const CartProvider = ({children})=> {
     },[]);
 
     return(
-        <CartContext.Provider value={{pizza, setPizza,handlePrice,total}}>
+        <CartContext.Provider value={{pizza, setPizza,handleItems,total,cart}}>
                 {children}
         </CartContext.Provider>
     )

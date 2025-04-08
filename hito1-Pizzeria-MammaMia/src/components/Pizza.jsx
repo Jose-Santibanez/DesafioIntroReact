@@ -3,15 +3,11 @@ import { CartContext } from "../context/CartContext";
 
 export const Pizza = () => {
 
-    const {pizza,total, handlePrice} = useContext(CartContext); 
+    const {pizza,total, handleItems} = useContext(CartContext); 
 
-    console.log(total.constructor.name)
-    const primeraPizza = pizza[0] 
-    console.log(primeraPizza)
-
-   
-   
     
+    const primeraPizza = pizza[0] 
+
     return(
         <>
         <div className="contenedor-pizza">
@@ -24,7 +20,7 @@ export const Pizza = () => {
                         <h1>{primeraPizza.name}</h1>
                         <p>${primeraPizza.price}</p>
                         <p>{primeraPizza.desc}</p> 
-                        <button onClick={()=>handlePrice(primeraPizza)}>Agregar</button>   
+                        <button onClick={()=>handleItems(primeraPizza)}>Agregar</button>   
                 </div>
                     
             </div>

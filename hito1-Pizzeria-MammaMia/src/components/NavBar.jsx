@@ -9,10 +9,7 @@ export const NavBar = ()=> {
 
     const{total} = useContext(CartContext)
    
-    /* const precioTotal = () =>{
-
-    } */
-    const total1 = "$0";
+    
     const sepTotal = total.toLocaleString("es-Es")
     const token = false;
     const logUser = token ? <LoginUser/>: <LogoutUser/>;

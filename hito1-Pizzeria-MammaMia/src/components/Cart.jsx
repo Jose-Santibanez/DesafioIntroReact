@@ -1,7 +1,12 @@
+import { useContext } from "react"
 import { Form, Row, Col, Button} from "react-bootstrap"
+import { CartContext } from "../context/CartContext"
 
 export const Cart = ()=> {
        
+    const {cart, } = useContext(CartContext)
+
+
     return(
             <div className="contenedor-cart">
                 <Form className="cart">

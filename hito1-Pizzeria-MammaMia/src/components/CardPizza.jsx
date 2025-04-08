@@ -7,7 +7,7 @@ import { CartContext } from "../context/CartContext";
 
 export const CardPizza = ({props})=>{
     
-    const {handlePrice} = useContext(CartContext)
+    const {handleItems} = useContext(CartContext)
 
     return(
         <> 
@@ -26,7 +26,7 @@ export const CardPizza = ({props})=>{
                 <h3>Precio: ${props.price}</h3>
                 <div className="botones">
                     <Button variant="outline-secondary">Ver más</Button>
-                    <Button   variant="secondary">Añadir <img src="/AgregarCarrito.svg"/></Button>
+                    <Button  onClick={()=>{handleItems(props)}} variant="secondary">Añadir <img src="/AgregarCarrito.svg"/></Button>
                 </div>
             </Card.Footer>
           </Card>  
