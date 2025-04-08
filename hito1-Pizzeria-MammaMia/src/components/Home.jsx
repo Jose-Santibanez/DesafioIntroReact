@@ -13,8 +13,7 @@ export const Home = ()=> {
             <div className="galery">
                 {
                     pizza.map(producto =>(
-                        <CardPizza key={producto.id} img={producto.img} name={producto.name} ingredients={producto.ingredients}
-                        price={producto.price}/>
+                        <CardPizza props={producto}/>
                      ))        
                 } 
             </div>
