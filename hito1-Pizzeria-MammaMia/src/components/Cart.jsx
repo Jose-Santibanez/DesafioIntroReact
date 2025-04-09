@@ -1,36 +1,41 @@
 import { useContext } from "react"
-import { Form, Row, Col, Button} from "react-bootstrap"
+import { Row, Col, Button, Container} from "react-bootstrap"
 import { CartContext } from "../context/CartContext"
 
 export const Cart = ()=> {
        
-    const {cart, } = useContext(CartContext)
+    const {cart,setCart,total, handleItems } = useContext(CartContext)
+    
+    const prueba = [{id: 0 , nombre:'nombre', cantidad = },{id: 1, nombre: 'nombre'}]
 
+    const yaExiste = id => prueba.find(elem => elem.id == id) != undefined;
+    
+    const validaDuplicados = (id)=>{ 
+       let duplicado = prueba.find(e=>e.id == id) !== undefined
+       return duplicado
+    }
 
+    validaDuplicados(1)
+    
     return(
             <div className="contenedor-cart">
-                <Form className="cart">
                     <h3>
                         Detalles del pedido: 
                     </h3>
-                    <Row>
-                        <Form.Group as={Col} >
-                            <ul className="cart-detalle">
-                                <li>Napolitana</li> 
-                                <li>salame</li>
-                            </ul>
-                        </Form.Group>
-                        <Form.Group as={Col}>
-                            <ul>
-                                <li>$5950</li>
-                            </ul>
-                        </Form.Group>
-                    </Row>
+                    <div>
+                    {cart.map(e=>(
+                        <ul className="cart-list"><img src={e.img} alt=""/>
+                            <li>{e.name}</li>
+                            <li>{e.price}</li>
+                            <button className="btn-red">-</button>
+                            <button onClick={()=>handleItems(e)}>+</button>
+                        </ul>
+                    ))} 
+                    </div>
                     
-                    <h2>Total:</h2>  
+                    <h2>Total: {total}</h2>  
                     <Button>Pagar</Button>
-                </Form>    
-
+                
             </div>
     )
 }

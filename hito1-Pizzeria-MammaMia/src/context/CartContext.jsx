@@ -9,8 +9,9 @@ export const CartProvider = ({children})=> {
     const [total, setTotal] = useState(0)
     const [cart, setCart] = useState([])    
     
-     const handleItems = (itemPizza)=>{   
-        setCart([...cart,{itemPizza}]) 
+     const handleItems = (itemPizza)=>{ 
+          
+        setCart([...cart,itemPizza]) 
         const precio = itemPizza.price;
         calculaTotal(precio)
         }   
