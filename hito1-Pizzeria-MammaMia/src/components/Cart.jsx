@@ -6,7 +6,16 @@ export const Cart = ()=> {
        
     const {cart,setCart,total, handleItems, eliminaItem } = useContext(CartContext)
     
-   
+   /*  const prueba = [{id: 0 , nombre:'nombre'},{id: 1, nombre: 'nombre'}]
+
+    const yaExiste = id => prueba.find(elem => elem.id == id) != undefined;
+    
+    const validaDuplicados = (id)=>{ 
+       let duplicado = prueba.find(e=>e.id == id) !== undefined
+       return duplicado
+    }
+
+    validaDuplicados(1) */
     
     return(
             <div className="contenedor-cart">
