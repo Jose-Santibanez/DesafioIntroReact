@@ -28,6 +28,10 @@ export const CartProvider = ({children})=> {
         if(operación === 1)setTotal(prev => prev + precio)
         else if (operación === 0)setTotal(prev => prev - precio)
     }
+    // encuentra duplicados
+    const encuentraDuplicados = (item)=> {
+        const duplicados = cart.filtere(e=> e.id === item.id ) 
+    }
     
     const api = "http://localhost:5000/api/pizzas/"
     
@@ -51,7 +55,7 @@ export const CartProvider = ({children})=> {
     },[]);
 
     return(
-        <CartContext.Provider value={{pizza, setPizza,handleItems,total,cart, eliminaItem}}>
+        <CartContext.Provider value={{pizza, setPizza,handleItems,total,cart, eliminaItem,encuentraDuplicados}}>
                 {children}
         </CartContext.Provider>
     )

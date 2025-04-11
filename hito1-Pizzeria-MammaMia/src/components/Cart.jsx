@@ -6,7 +6,7 @@ export const Cart = ()=> {
        
     const {cart,setCart,total, handleItems, eliminaItem } = useContext(CartContext)
     
-   /*  const prueba = [{id: 0 , nombre:'nombre'},{id: 1, nombre: 'nombre'}]
+   /*  
 
     const yaExiste = id => prueba.find(elem => elem.id == id) != undefined;
     
@@ -14,8 +14,16 @@ export const Cart = ()=> {
        let duplicado = prueba.find(e=>e.id == id) !== undefined
        return duplicado
     }
-
+    
     validaDuplicados(1) */
+   
+    console.log(cart)
+    const prueba = [{id: 0 , nombre:'nombre'},{id: 0 , nombre:'nombre'},{id: 1, nombre: 'nombre'}]
+    const existe = (item) => {
+        const duplicados = prueba.filter(e=> e.id === item ) 
+        console.log(duplicados.length)
+    }
+    existe(0)
     
     return(
             <div className="contenedor-cart">
@@ -25,6 +33,7 @@ export const Cart = ()=> {
                     <div>
                     {cart.map(e=>(
                         <ul className="cart-list"><img src={e.img} alt=""/>
+                            
                             <li>{e.name}</li>
                             <li>{e.price}</li>
                             <button className="btn-red" onClick={()=>eliminaItem(e)}>-</button>
