@@ -35,7 +35,7 @@ export const CartProvider = ({children})=> {
             setCart(newCart)
         }
     }
-    console.log(cart)
+   
 
     const calcularTotal = () => {
         const totalCalculado = cart.reduce((acum,item)=>{

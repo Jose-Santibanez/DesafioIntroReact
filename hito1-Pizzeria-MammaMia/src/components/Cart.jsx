@@ -3,12 +3,7 @@ import {  Button} from "react-bootstrap"
 import { CartContext } from "../context/CartContext"
 
 export const Cart = ()=> {
-    const {cart,total, handleItems, eliminaItem } = useContext(CartContext)
-
-    
-    
-
-    
+    const {cart,total, handleItems, eliminaItem } = useContext(CartContext)    
     return(
             <div className="contenedor-cart">
                     <h3>
@@ -17,9 +12,11 @@ export const Cart = ()=> {
                     <div>
                     {cart.map(e=>(
                         <ul className="cart-list"> 
-                            <img src={e.img} alt=""/>  
-                            <li>{e.name}</li>
-                            <li>{e.price}</li> 
+                            {
+                            e.cantidad > 1 
+                            ? <><p>{e.cantidad}</p>  <img src={e.img} alt=""/> <li>{e.name}</li> <li>{e.price}</li></> 
+                             :<><p> </p><img src={e.img} alt=""/> <li>{e.name}</li> <li>{e.price}</li></>
+                            } 
                             <button className="btn-red" onClick={()=>eliminaItem(e)}>-</button>
                             <button onClick={()=>handleItems(e)}>+</button>
                         </ul>
