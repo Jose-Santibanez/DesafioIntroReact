@@ -6,6 +6,7 @@ export const CartContext = createContext() // Creamos el contexto llamado CartCo
 export const CartProvider = ({children})=> {
     // Creamos los estados que vamos a manejar
     const [pizza, setPizza] = useState([]);
+   
     const [total, setTotal] = useState(0)
     const [cart, setCart] = useState([])    
     
@@ -68,7 +69,7 @@ export const CartProvider = ({children})=> {
     },[cart]);
 
     return(
-        <CartContext.Provider value={{pizza, setPizza,handleItems,total,cart, eliminaItem}}>
+        <CartContext.Provider value={{handleItems,total,cart, eliminaItem}}>
                 {children}
         </CartContext.Provider>
     )
