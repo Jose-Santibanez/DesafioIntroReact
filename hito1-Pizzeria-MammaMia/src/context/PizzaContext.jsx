@@ -8,7 +8,7 @@ export const PizzaContext = createContext()
 export const PizzaProvider = ({children}) => {
     // Creamos los estados para las pizzat y para el item Pizza
     const [pizzas, setPizzas] = useState([]);
-    const [itemPizza, setItemPizza] = useState({});
+    const [itemPizza, setItemPizza] = useState([]);
 
     // guardamos los endpoint a realizae la Petición GET
     const endpointPizzas = 'http://localhost:5000/api/pizzas/'
@@ -24,20 +24,20 @@ export const PizzaProvider = ({children}) => {
             // Obtenemos la data extraida en formato JSON
             const pizzaData = await resPizzas.json();
             const itemPizzaData = await resItemPizzas.json(); 
-
+      
             // Guardamos los json obtenidos en la función setter de los estados
             setPizzas(pizzaData);
-            setItemPizza(itemPizza)
+            setItemPizza(itemPizzaData)
             
         
     }
-    
+    console.log('estos es 1 item :',itemPizza.constructor.name)
     // Utilizamos el hook useEffect() para controlar las peticiónes realizadas
     // esta solo se realice en la carga inicial y muestra en el DOM (fase montaje)
     useEffect(()=>{
         getData()
     },[])
-
+    
     return(
         <PizzaContext.Provider value={{pizzas,itemPizza}}>
             { children }
