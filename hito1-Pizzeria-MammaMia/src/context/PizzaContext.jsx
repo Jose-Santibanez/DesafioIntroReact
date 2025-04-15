@@ -16,19 +16,25 @@ export const PizzaProvider = ({children}) => {
     
     // Creamos una función Fetch utilizando await para consultar los endpoints
     const getData = async () =>{
-            
+         try{
             // Realizamos la petición GET mediante Fetch
             const resPizzas = await fetch(endpointPizzas);
             const resItemPizzas = await fetch(endpointItem);
-            
+         
+            if(!resPizzas.ok || !resItemPizzas.ok)
+            {
+                 throw new Error("Error al obtener datos de la API");
+            }
             // Obtenemos la data extraida en formato JSON
             const pizzaData = await resPizzas.json();
             const itemPizzaData = await resItemPizzas.json(); 
-      
+
             // Guardamos los json obtenidos en la función setter de los estados
             setPizzas(pizzaData);
             setItemPizza(itemPizzaData)
-            
+         }catch(error){
+                console.error('Ocurrió un error al cargar los datos', error.message);
+         }
         
     }
     console.log('estos es 1 item :',itemPizza.constructor.name)
