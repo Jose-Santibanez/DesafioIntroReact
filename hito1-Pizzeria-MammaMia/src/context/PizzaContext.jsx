@@ -11,7 +11,7 @@ export const PizzaProvider = ({children}) => {
     const [pizzas, setPizzas] = useState([]);
     const [itemPizza, setItemPizza] = useState([]);
 
-    const { id } = useParams()
+  
     // guardamos los endpoint a realizar la Petición GET
     const endpointPizzas = 'http://localhost:5000/api/pizzas/'
     
@@ -21,9 +21,8 @@ export const PizzaProvider = ({children}) => {
          try{
             // Realizamos la petición GET mediante Fetch
             const resPizzas = await fetch(endpointPizzas);
-            /* const resItemPizzas = await fetch(endpointItem); */
          
-            if(!resPizzas.ok /* || !resItemPizzas.ok */)
+            if(!resPizzas.ok)
             {
                  throw new Error("Error al obtener datos de la API");
             }
@@ -40,7 +39,7 @@ export const PizzaProvider = ({children}) => {
         
     }
 
-    const getItemData = async (id = 'p001') => {
+    const getItemData = async ( id = 'p001' ) => {
 
          // guardamos los endpoint a realizar la Petición GET
         const endpointItem = `http://localhost:5000/api/pizzas/${id}`
@@ -59,7 +58,7 @@ export const PizzaProvider = ({children}) => {
         }catch(error){
             console.error('Ocurrió un error al cargar los datos', error.message);
         }
-        console.log(id)
+  
     }
     
     // Utilizamos el hook useEffect() para controlar las peticiónes realizadas
@@ -70,7 +69,7 @@ export const PizzaProvider = ({children}) => {
     },[])
     
     return(
-        <PizzaContext.Provider value={{pizzas,itemPizza, getItemData}}>
+        <PizzaContext.Provider value={{pizzas, itemPizza, getItemData}}>
             { children }
         </PizzaContext.Provider>
     )

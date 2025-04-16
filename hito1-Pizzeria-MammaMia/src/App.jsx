@@ -11,7 +11,7 @@ import { Pizza } from './components/Pizza';
 import { NotFound } from './components/NotFound';
 import { CartProvider } from './context/CartContext';
 import { PizzaProvider } from './context/PizzaContext'; 
-
+import { UserPrivder } from './context/UserContext';
 
 function App() {
   
@@ -19,6 +19,7 @@ function App() {
   return  (
     <div className='contenedor'>
        <PizzaProvider>
+       <UserPrivder>
         <CartProvider>
        
           <NavBar />
@@ -33,6 +34,7 @@ function App() {
               </Routes> 
            
         </CartProvider>  
+        </UserPrivder>
       </PizzaProvider> 
      
     </div>
