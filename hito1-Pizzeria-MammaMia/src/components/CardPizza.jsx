@@ -2,14 +2,13 @@
 import { useContext } from "react";
 import { Card, Button } from "react-bootstrap";
 import { CartContext } from "../context/CartContext";
-import { PizzaContext } from "../context/PizzaContext";
 
 
 
 export const CardPizza = ({props})=>{
     
     const {handleItems} = useContext(CartContext)
-    const {getItemData} = useContext(PizzaContext)
+
     return(
         <> 
           <Card className="card" >
@@ -26,7 +25,7 @@ export const CardPizza = ({props})=>{
             <Card.Footer>
                 <h3>Precio: ${props.price}</h3>
                 <div className="botones">
-                    <Button variant="outline-secondary" onClick={()=>{getItemData(props.id)}}>Ver más</Button>
+                    <Button variant="outline-secondary">Ver más</Button>
                     <Button  onClick={()=>{handleItems(props)}} variant="secondary">Añadir <img src="/AgregarCarrito.svg"/></Button>
                 </div>
             </Card.Footer>

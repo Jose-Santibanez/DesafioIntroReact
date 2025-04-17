@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // Creamos el contexto para manejar las peticiones a travez de su propio contexto
 export const PizzaContext = createContext() 
@@ -10,8 +10,10 @@ export const PizzaProvider = ({children}) => {
     // Creamos los estados para las pizzat y para el item Pizza
     const [pizzas, setPizzas] = useState([]);
     const [itemPizza, setItemPizza] = useState([]);
+    
+   
 
-  
+   
     // guardamos los endpoint a realizar la Petición GET
     const endpointPizzas = 'http://localhost:5000/api/pizzas/'
     
@@ -43,6 +45,7 @@ export const PizzaProvider = ({children}) => {
 
          // guardamos los endpoint a realizar la Petición GET
         const endpointItem = `http://localhost:5000/api/pizzas/${id}`
+      
          
         try{
             // Realizamos la petición con fetch()
@@ -54,18 +57,27 @@ export const PizzaProvider = ({children}) => {
              const itemPizzaData = await resItemPizza.json(); 
 
              setItemPizza(itemPizzaData);
-
+             
+             
         }catch(error){
             console.error('Ocurrió un error al cargar los datos', error.message);
         }
+       
+
   
     }
+   /*  const irPizza = (id = 'p001') => {
+        getItemData(id)
+        navigate(`/Pizza/${id}`)
+        
+    } */
     
     // Utilizamos el hook useEffect() para controlar las peticiónes realizadas
     // esta solo se realice en la carga inicial y muestra en el DOM (fase montaje)
     useEffect(()=>{
         getPizzaData()
         getItemData()
+    
     },[])
     
     return(

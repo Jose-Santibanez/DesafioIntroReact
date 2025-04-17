@@ -1,4 +1,5 @@
 import { createContext, use, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const UserContext = createContext()
 
@@ -7,8 +8,11 @@ export const UserPrivder = ({children}) => {
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");
     const [error, setError] = useState("");
+
+    
     const token = true;
-  
+   
+
     const emailDefault = 'validaCorreo@email.cl'
     const passwordDefault  = 'password';
     
@@ -35,7 +39,7 @@ export const UserPrivder = ({children}) => {
     
    
     return(
-        <UserContext.Provider value={{email, pass, error, validarData,setEmail, setPass, getEmail, getPass }}> 
+        <UserContext.Provider value={{email, pass, error, validarData, getEmail, getPass }}> 
             {children}
         </UserContext.Provider>
     )

@@ -45,7 +45,7 @@ export const CartProvider = ({children})=> {
         setTotal(totalCalculado)
     }
  
-    
+  /*   
     const api = "http://localhost:5000/api/pizzas/"
     
     const getData = async ()=> {
@@ -62,9 +62,9 @@ export const CartProvider = ({children})=> {
             console.error("Error al obtener los datos de la API: ",error);
         }
         
-    };
+    }; */
     useEffect(()=>{
-        getData()
+        
         calcularTotal()
     },[cart]);
 
