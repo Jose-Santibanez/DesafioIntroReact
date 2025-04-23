@@ -3,18 +3,20 @@ import { useContext } from "react";
 import { Card, Button } from "react-bootstrap";
 import { CartContext } from "../context/CartContext";
 import { PizzaContext } from "../context/PizzaContext";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 
-export const CardPizza = ({props})=>{
-    
+export const CardPizza = ({props})=>{  
     const {handleItems} = useContext(CartContext)
     const { getItemData } = useContext(PizzaContext)
     const navigate = useNavigate()
-       const irPizza = (id) => {
-           navigate(`/Pizza/${id}`)
-           getItemData(id)
+       const irPizza = (id = 'p001') => {
+            
+            getItemData(id)
+            navigate(`/Pizza/${id}`)
+          
+           
        }
 
     return(
@@ -33,7 +35,9 @@ export const CardPizza = ({props})=>{
             <Card.Footer>
                 <h3>Precio: ${props.price}</h3>
                 <div className="botones">
-                    <Button onClick={()=>irPizza(props.id)} variant="outline-secondary">Ver más</Button>
+                    <Button 
+                    value={props.id}
+                    onClick={()=>irPizza(props.id)} variant="outline-secondary">Ver más</Button>
                     <Button  onClick={()=>{handleItems(props)}} variant="secondary">Añadir <img src="/AgregarCarrito.svg"/></Button>
                 </div>
             </Card.Footer>

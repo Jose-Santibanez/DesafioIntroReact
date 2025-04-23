@@ -12,30 +12,31 @@ import { NotFound } from './components/NotFound';
 import { CartProvider } from './context/CartContext';
 import { PizzaProvider } from './context/PizzaContext'; 
 import { UserPrivder } from './context/UserContext';
+import { PizzaDetalle } from './views/PizzaDetalle';
 
 function App() {
   
     
   return  (
     <div className='contenedor'>
+      <UserPrivder>
        <PizzaProvider>
-       <UserPrivder>
         <CartProvider>
-       
           <NavBar />
           <Footer/>
               <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/registroForm' element={<FormRegistro />}/>
-                <Route path='/loginForm' element={<FormLogin />}></Route>
-                <Route path='/Pizza/:id' element={<Pizza />}></Route>
-                <Route path='/Cart' element={<Cart />}></Route>
-                <Route path='*' element={<NotFound />}></Route>
+                <Route path='/loginForm' element={<FormLogin />}/>
+                <Route path='/Pizza' element={<Pizza />}/>
+                <Route path='/Pizza/:id' element={<PizzaDetalle />}/>
+                <Route path='/Cart' element={<Cart />}/>
+                <Route path='*' element={<NotFound />}/>
               </Routes> 
-           
-        </CartProvider>  
-        </UserPrivder>
-      </PizzaProvider> 
+        </CartProvider>
+      </PizzaProvider>   
+    </UserPrivder>
+      
      
     </div>
   )

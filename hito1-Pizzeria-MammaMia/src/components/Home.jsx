@@ -19,8 +19,7 @@ export const Home = ()=> {
                      ))        
                 } 
             </div>
-        </main>
-            
+        </main>    
         </>
     )
             

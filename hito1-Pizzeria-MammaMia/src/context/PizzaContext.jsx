@@ -1,54 +1,59 @@
 import { createContext, useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
 
 // Creamos el contexto para manejar las peticiones a travez de su propio contexto
 export const PizzaContext = createContext() 
-
 // Creamos el proveedor que compartira nuestro contexto
-
 export const PizzaProvider = ({children}) => {
     // Creamos los estados para las pizzat y para el item Pizza
     const [pizzas, setPizzas] = useState([]);
-    const [itemPizza, setItemPizza] = useState([]);
-    
+    const [itemPizza, setItemPizza] = useState({}); 
+
    /*  const navigate = useNavigate()
     const irPizza = (id) => {
-        navigate(`/Pizza/${id}`)
-        
+        navigate(`/Pizza/${id}`)     
     } */
-    
-   
     // guardamos los endpoint a realizar la Petición GET
-    const endpointPizzas = 'http://localhost:5000/api/pizzas/'
-    
-    
+    const endpointPrincipal = 'http://localhost:5000/api/pizzas/'
     // Creamos una función Fetch utilizando await para consultar los endpoints
     const getPizzaData = async (  ) =>{
          try{
             // Realizamos la petición GET mediante Fetch
-            const resPizzas = await fetch(endpointPizzas);
-         
+            const resPizzas = await fetch(endpointPrincipal);
             if(!resPizzas.ok)
             {
                  throw new Error("Error al obtener datos de la API");
             }
             // Obtenemos la data extraida en formato JSON
             const pizzaData = await resPizzas.json();
-           
-
             // Guardamos los json obtenidos en la función setter de los estados
             setPizzas(pizzaData);
            /*  setItemPizza(itemPizzaData) */
          }catch(error){
                 console.error('Ocurrió un error al cargar los datos', error.message);
          }
-        
     }
-    let endpointItem =  `http://localhost:5000/api/pizzas/p001`
-    const getItemData = async ( id = 0 ) => {
-        
-    if(id === 0 ){
-              
+    const getItemBase = async () =>{
+         let endpointBase =  'http://localhost:5000/api/pizzas/p001';
+        try{
+            // obtenemos data mediante Fetch()
+            const resItemBase = await fetch(endpointBase)
+            if(!resItemBase.ok){
+                throw new Error("Error al obtener datos de la API")
+            };
+            // Parseamos lo obtenido a JSON()
+            const dataItemBase = await resItemBase.json();
+
+            setItemPizza(dataItemBase);
+
+        }catch(err){
+            console.error('Ocurrio un error al cargar los datos', err.message)
+        }  
+    }
+     
+    /* const getItemData = async ( id = 'p001') => {
+        console.log(id)
+        if(id === 'p001' ){
+               
             try{
                 // Realizamos la petición con fetch()
                  const resItemPizza = await fetch(endpointItem)
@@ -75,31 +80,27 @@ export const PizzaProvider = ({children}) => {
                 {
                     throw new Error('Error al obtener datos de la api');
                 }
-                const itemPizzaData = await resItemPizza.json(); 
-
+                const itemPizzaData = await resItemPizza.json();
                 setItemPizza(itemPizzaData);
-                
-                
+                 
+                 
             }catch(error){
                 console.error('Ocurrió un error al cargar los datos', error.message);
             }
        
         }
-       
-      
-
-  
-    }
+    } */
     
     // Utilizamos el hook useEffect() para controlar las peticiónes realizadas
     // esta solo se realice en la carga inicial y muestra en el DOM (fase montaje)
     useEffect(()=>{
         getPizzaData()
-        getItemData()
+       /*  getItemData() */
+        getItemBase()
     },[])
     
     return(
-        <PizzaContext.Provider value={{pizzas, itemPizza, getItemData}}>
+        <PizzaContext.Provider value={{pizzas, itemPizza}}>
             { children }
         </PizzaContext.Provider>
     )

@@ -1,29 +1,26 @@
-import { useContext } from "react";
-import { CartContext } from "../context/CartContext";
 import { PizzaContext } from "../context/PizzaContext";
+import { useState, useContext } from "react";
 
-export const Pizza = () => {
 
-    const { itemPizza } = useContext(PizzaContext);
-    const { handleItems } = useContext(CartContext)
-   
+export const PizzaDetalle = ( ) => {
+
+ const {handleItems} = useContext(CartContext);
+ const {itemPizza} = useContext(PizzaContext);
     
     if(!itemPizza || itemPizza.length === 0 ){
         return <p> Cargando item-.....</p>
-    } 
-   /* const ItemToCart = itemPizza; */
- 
+    }
     return(
         <>
         <div className="contenedor-pizza">
             <div className="pizza">
                 <img src={itemPizza.img} alt="" />
                 <div className="contenedor-ingredientes">               
-                     <ul className="ingredientes" >
+                    <ul className="ingredientes" >
                         {itemPizza.ingredients.map((ingredient,index) =>(<li key={index}>{ingredient}</li>))}
-                        </ul>  
+                        </ul> 
                         <h1>{itemPizza.name}</h1>
-                        <p>{itemPizza.price}</p>
+                        <p>${itemPizza.price}</p>
                         <p>{itemPizza.desc}</p> 
                         <button onClick={()=>handleItems(itemPizza)}>Agregar</button>   
                 </div>    

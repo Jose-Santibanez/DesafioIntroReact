@@ -6,7 +6,6 @@ export const CartContext = createContext() // Creamos el contexto llamado CartCo
 export const CartProvider = ({children})=> {
     // Creamos los estados que vamos a manejar
     const [pizza, setPizza] = useState([]);
-   
     const [total, setTotal] = useState(0)
     const [cart, setCart] = useState([])    
     
@@ -36,8 +35,8 @@ export const CartProvider = ({children})=> {
             setCart(newCart)
         }
     }
-   
 
+   // Calcular el total
     const calcularTotal = () => {
         const totalCalculado = cart.reduce((acum,item)=>{
             return acum + item.price * item.cantidad;
@@ -45,24 +44,6 @@ export const CartProvider = ({children})=> {
         setTotal(totalCalculado)
     }
  
-  /*   
-    const api = "http://localhost:5000/api/pizzas/"
-    
-    const getData = async ()=> {
-        try{
-            const res = await fetch(api)
-            
-            if(!res.ok){
-                throw new Error(`Error HTTP: ${res.status}`);
-            }
-            
-            const data = await res.json();
-            setPizza(data)
-        }catch(error){
-            console.error("Error al obtener los datos de la API: ",error);
-        }
-        
-    }; */
     useEffect(()=>{
         
         calcularTotal()
