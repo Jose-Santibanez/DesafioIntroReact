@@ -3,10 +3,11 @@ import { createContext, useState, useEffect } from "react";
 // Creamos el contexto para manejar las peticiones a travez de su propio contexto
 export const PizzaContext = createContext() 
 // Creamos el proveedor que compartira nuestro contexto
-export const PizzaProvider = ({children}) => {
+export const PizzaProvider = (  { children }  ) => {
     // Creamos los estados para las pizzat y para el item Pizza
     const [pizzas, setPizzas] = useState([]);
     const [itemPizza, setItemPizza] = useState({}); 
+    const [ loadingItem, setLoadingItem ] = useState(true);
 
    /*  const navigate = useNavigate()
     const irPizza = (id) => {
@@ -50,6 +51,7 @@ export const PizzaProvider = ({children}) => {
         }  
     }
      
+
     /* const getItemData = async ( id = 'p001') => {
         console.log(id)
         if(id === 'p001' ){

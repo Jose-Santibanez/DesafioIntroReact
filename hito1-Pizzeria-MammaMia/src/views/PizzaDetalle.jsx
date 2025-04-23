@@ -1,9 +1,11 @@
 import { PizzaContext } from "../context/PizzaContext";
-import { useState, useContext } from "react";
+import {  useContext } from "react";
+import { useParams } from "react-router-dom";
 
 
 export const PizzaDetalle = ( ) => {
-
+const { id  } = useParams()
+console.log()
  const {handleItems} = useContext(CartContext);
  const {itemPizza} = useContext(PizzaContext);
     

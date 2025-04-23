@@ -1,12 +1,13 @@
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import { PizzaContext } from "../context/PizzaContext";
+import { useParams } from "react-router-dom";
 
 export const Pizza = () => {
-
+    const { id } = useParams()
     const { itemPizza } = useContext(PizzaContext);
     const { handleItems } = useContext(CartContext)
-   
+   console.log('Esto es',id)
     
     if(!itemPizza || itemPizza.length === 0 ){
         return <p> Cargando item-.....</p>
