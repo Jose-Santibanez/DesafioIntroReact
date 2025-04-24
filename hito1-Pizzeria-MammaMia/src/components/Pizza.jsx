@@ -9,7 +9,7 @@ export const Pizza = () => {
     const { handleItems } = useContext(CartContext)
   
     useEffect(()=>{
-        getItemBase[id]
+        getItemBase(id)
     },[id])
 
     if(loadingItem) return <p>Cargando Pizza...</p> // Aqui controlamos que la vista no falle al recargar la página

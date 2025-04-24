@@ -28,19 +28,21 @@ export const PizzaProvider = (  { children }  ) => {
                 setError('No se pudo cargar la lista de pizzas')
          }
     }
-    const getItemBase = async (id) =>{
-         let endpointBase =  `http://localhost:5000/api/pizzas/${id}/`;
+    const getItemBase = async (id = 'p001') =>{
+         let endpointBase =  `http://localhost:5000/api/pizzas/${id}`;
+         setLoadingItem(true)
+         setError(null)
         try{
-            setLoadingItem(true)
             // obtenemos data mediante Fetch()
             const resItemBase = await fetch(endpointBase);
-            if(!resItemBase.ok) throw new Error("Error al obtener datos de la API");
+            if(!resItemBase.ok) throw new Error("Pizza no encontrada"); 
             // Parseamos lo obtenido a JSON()
             const dataItemBase = await resItemBase.json();
             setItemPizza(dataItemBase);
         }catch(err){
             console.error('Ocurrio un error al cargar los datos', err.message)
             setItemPizza(null)
+            setError(err.message)
         }finally{
             setLoadingItem(false)
         } 
@@ -50,9 +52,6 @@ export const PizzaProvider = (  { children }  ) => {
     // esta solo se realice en la carga inicial y muestra en el DOM (fase montaje)
     useEffect(()=>{
         getPizzaData()
-       /*  getItemData() */
-        getItemBase()
-       /*  getItemSeleccionado() */
     },[])
     
     return(
