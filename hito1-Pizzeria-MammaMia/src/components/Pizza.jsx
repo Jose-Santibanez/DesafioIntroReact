@@ -5,15 +5,14 @@ import { useParams } from "react-router-dom";
 
 export const Pizza = () => {
     const { id } = useParams()
-    const { itemPizza } = useContext(PizzaContext);
+    const { itemPizza, getItemBase, loadingItem, error } = useContext(PizzaContext);
     const { handleItems } = useContext(CartContext)
-   console.log('Esto es',id)
+  
     
-    if(!itemPizza || itemPizza.length === 0 ){
-        return <p> Cargando item-.....</p>
-    } 
-   /* const ItemToCart = itemPizza; */
- 
+   
+    
+   
+   
     return(
         <>
         <div className="contenedor-pizza">
@@ -21,7 +20,7 @@ export const Pizza = () => {
                 <img src={itemPizza.img} alt="" />
                 <div className="contenedor-ingredientes">               
                      <ul className="ingredientes" >
-                        {itemPizza.ingredients.map((ingredient,index) =>(<li key={index}>{ingredient}</li>))}
+                        {itemPizza.ingredients.join(', ')}
                         </ul>  
                         <h1>{itemPizza.name}</h1>
                         <p>{itemPizza.price}</p>

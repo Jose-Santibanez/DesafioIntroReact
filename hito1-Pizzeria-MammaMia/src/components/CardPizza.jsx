@@ -7,17 +7,18 @@ import { useNavigate } from "react-router-dom";
 
 
 
-export const CardPizza = ({props})=>{  
+export const CardPizza = ({ props })=>{  
     const {handleItems} = useContext(CartContext)
-    const { getItemData } = useContext(PizzaContext)
+    const {  getItemSeleccionado } = useContext(PizzaContext)
     const navigate = useNavigate()
        const irPizza = (id = 'p001') => {
             
-            getItemData(id)
+        getItemSeleccionado(id)
             navigate(`/Pizza/${id}`)
           
            
        }
+    
 
     return(
         <> 
