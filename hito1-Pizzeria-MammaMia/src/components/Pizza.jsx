@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { CartContext } from "../context/CartContext";
 import { PizzaContext } from "../context/PizzaContext";
 import { useParams } from "react-router-dom";
@@ -8,11 +8,14 @@ export const Pizza = () => {
     const { itemPizza, getItemBase, loadingItem, error } = useContext(PizzaContext);
     const { handleItems } = useContext(CartContext)
   
-    
-   
-    
-   
-   
+    useEffect(()=>{
+        getItemBase[id]
+    },[id])
+
+    if(loadingItem) return <p>Cargando Pizza...</p> // Aqui controlamos que la vista no falle al recargar la página
+    if(error) return <p>Error: {error}</p>
+    if(!itemPizza) return <p>No se encuentra la pizza.</p>
+     
     return(
         <>
         <div className="contenedor-pizza">

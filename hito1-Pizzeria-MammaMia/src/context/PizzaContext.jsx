@@ -10,10 +10,6 @@ export const PizzaProvider = (  { children }  ) => {
     const [ loadingItem, setLoadingItem ] = useState(true);
     const [error, setError] = useState(null);
 
-   /*  const navigate = useNavigate()
-    const irPizza = (id) => {
-        navigate(`/Pizza/${id}`)     
-    } */
     // guardamos los endpoint a realizar la Petición GET
     const endpointPrincipal = 'http://localhost:5000/api/pizzas/'
     // Creamos una función Fetch utilizando await para consultar los endpoints
@@ -32,8 +28,8 @@ export const PizzaProvider = (  { children }  ) => {
                 setError('No se pudo cargar la lista de pizzas')
          }
     }
-    const getItemBase = async (id = 'p003') =>{
-         let endpointBase =  `http://localhost:5000/api/pizzas/${id}`;
+    const getItemBase = async (id) =>{
+         let endpointBase =  `http://localhost:5000/api/pizzas/${id}/`;
         try{
             setLoadingItem(true)
             // obtenemos data mediante Fetch()
@@ -49,59 +45,6 @@ export const PizzaProvider = (  { children }  ) => {
             setLoadingItem(false)
         } 
     }
-  /*    
-    const getItemSeleccionado = async ( id )=>{
-        const endpointSeleccion  = `http://localhost:5000/api/pizzas/${id}`;
-
-        try{
-            const resItem = await fetch(endpointSeleccion);
-            const itemData = await resItem.json();
-            setItemPizza(itemData);
-        }catch(err){
-            console.error('Ocurrio un error al cargar los datos', err.message)
-        }
-    }
-     */
-    /* const getItemData = async ( id = 'p001') => {
-        console.log(id)
-        if(id === 'p001' ){
-               
-            try{
-                // Realizamos la petición con fetch()
-                 const resItemPizza = await fetch(endpointItem)
-                 if(!resItemPizza.ok)
-                 {
-                    throw new Error('Error al obtener datos de la api');
-                 }
-                 const itemPizzaData = await resItemPizza.json(); 
-    
-                 setItemPizza(itemPizzaData);
-                 
-                 
-            }catch(error){
-                console.error('Ocurrió un error al cargar los datos', error.message);
-            }
-           
-        }else{
-                // guardamos los endpoint a realizar la Petición GET
-            endpointItem =  `http://localhost:5000/api/pizzas/${id}`
-            try{
-                // Realizamos la petición con fetch()
-                const resItemPizza = await fetch(endpointItem)
-                if(!resItemPizza.ok)
-                {
-                    throw new Error('Error al obtener datos de la api');
-                }
-                const itemPizzaData = await resItemPizza.json();
-                setItemPizza(itemPizzaData);
-                 
-                 
-            }catch(error){
-                console.error('Ocurrió un error al cargar los datos', error.message);
-            }
-       
-        }
-    } */
     
     // Utilizamos el hook useEffect() para controlar las peticiónes realizadas
     // esta solo se realice en la carga inicial y muestra en el DOM (fase montaje)

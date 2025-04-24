@@ -1,24 +1,24 @@
 
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Card, Button } from "react-bootstrap";
 import { CartContext } from "../context/CartContext";
-import { PizzaContext } from "../context/PizzaContext";
+/* import { PizzaContext } from "../context/PizzaContext"; */
 import { useNavigate } from "react-router-dom";
+import { PizzaContext } from "../context/PizzaContext";
 
 
 
 export const CardPizza = ({ props })=>{  
     const {handleItems} = useContext(CartContext)
-    const {  getItemSeleccionado } = useContext(PizzaContext)
-    const navigate = useNavigate()
-       const irPizza = (id = 'p001') => {
-            
-        getItemSeleccionado(id)
-            navigate(`/Pizza/${id}`)
-          
-           
-       }
-    
+    const {getItemBase} = useContext(PizzaContext)
+    const navigate = useNavigate() // hook para navegación Programatica
+    const HandleVerMas = () => { 
+        getItemBase(props.id)
+        navigate(`/Pizza/${props.id}`);  
+    }
+    useEffect(()=>{
+        getItemBase()
+    },[])
 
     return(
         <> 
@@ -36,9 +36,10 @@ export const CardPizza = ({ props })=>{
             <Card.Footer>
                 <h3>Precio: ${props.price}</h3>
                 <div className="botones">
-                    <Button 
-                    value={props.id}
-                    onClick={()=>irPizza(props.id)} variant="outline-secondary">Ver más</Button>
+                    
+                        <Button 
+                        onClick={HandleVerMas} variant="outline-secondary">Ver más</Button>
+                   
                     <Button  onClick={()=>{handleItems(props)}} variant="secondary">Añadir <img src="/AgregarCarrito.svg"/></Button>
                 </div>
             </Card.Footer>

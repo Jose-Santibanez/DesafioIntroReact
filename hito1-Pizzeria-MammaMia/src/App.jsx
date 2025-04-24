@@ -12,7 +12,7 @@ import { NotFound } from './components/NotFound';
 import { CartProvider } from './context/CartContext';
 import { PizzaProvider } from './context/PizzaContext'; 
 import { UserPrivder } from './context/UserContext';
-import { PizzaDetalle } from './views/PizzaDetalle';
+
 
 function App() {
   
@@ -28,8 +28,7 @@ function App() {
                 <Route path='/' element={<Home />} />
                 <Route path='/registroForm' element={<FormRegistro />}/>
                 <Route path='/loginForm' element={<FormLogin />}/>
-                <Route path='/Pizza' element={<Pizza />}/>
-                <Route path='/Pizza/:id' element={<PizzaDetalle />}/>
+                <Route path='/Pizza/:id' element={<Pizza />}/>
                 <Route path='/Cart' element={<Cart />}/>
                 <Route path='*' element={<NotFound />}/>
               </Routes> 

@@ -23,7 +23,7 @@ export const NavBar = ()=> {
                         <Nav className="me-auto" >
                             <Nav.Link as={NavLink} to="/" className="links links">Home</Nav.Link>
                             {logUser}
-                            <Nav.Link as={NavLink} to="/Pizza">Pizza</Nav.Link>
+                            
                         </Nav>
                     </Container>
             </Navbar>
