@@ -4,14 +4,17 @@ import { useNavigate } from "react-router-dom";
 export const UserContext = createContext()
 
 
-export const UserPrivder = ({children}) => {
+export const UserProvider = ({children}) => {
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");
     const [error, setError] = useState("");
+    const [ token, setToken] = useState(true);
 
     
-    const token = true;
-   
+  
+    const handleLogout =()=>{
+        setToken(false)
+    }
 
     const emailDefault = 'validaCorreo@email.cl'
     const passwordDefault  = 'password';
@@ -39,7 +42,7 @@ export const UserPrivder = ({children}) => {
     
    
     return(
-        <UserContext.Provider value={{email, pass, error, validarData, getEmail, getPass }}> 
+        <UserContext.Provider value={{token,handleLogout,email, pass, error, validarData, getEmail, getPass }}> 
             {children}
         </UserContext.Provider>
     )

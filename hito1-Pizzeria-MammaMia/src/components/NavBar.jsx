@@ -4,14 +4,15 @@ import { LogoutUser } from "./LogoutUser";
 import { NavLink } from "react-router-dom";
 import { useContext } from "react"; // Para usar el contexto
 import { CartContext } from "../context/CartContext"; // componente para consumir el contexto
+import { UserContext } from "../context/UserContext";
 
 export const NavBar = ()=> {
 
-    const{total} = useContext(CartContext)
-   
+    const{total} = useContext(CartContext);
+   const {token} = useContext(UserContext);
     
     const sepTotal = total.toLocaleString("es-Es")
-    const token = false;
+   
     const logUser = token ? <LoginUser/>: <LogoutUser/>;
     return (
         <div className="barra">

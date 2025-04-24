@@ -36,10 +36,8 @@ export const CardPizza = ({ props })=>{
             <Card.Footer>
                 <h3>Precio: ${props.price}</h3>
                 <div className="botones">
-                    
                         <Button 
                         onClick={HandleVerMas} variant="outline-secondary">Ver más</Button>
-                   
                     <Button  onClick={()=>{handleItems(props)}} variant="secondary">Añadir <img src="/AgregarCarrito.svg"/></Button>
                 </div>
             </Card.Footer>

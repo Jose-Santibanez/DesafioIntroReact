@@ -1,9 +1,12 @@
 import { useContext } from "react"
 import {  Button} from "react-bootstrap"
 import { CartContext } from "../context/CartContext"
+import { UserContext } from "../context/UserContext"
 
 export const Cart = ()=> {
-    const {cart,total, handleItems, eliminaItem } = useContext(CartContext)    
+    const {cart,total, handleItems, eliminaItem } = useContext(CartContext)
+    const {token} = useContext(UserContext);
+    
     return(
             <div className="contenedor-cart">
                     <h3>
@@ -24,7 +27,7 @@ export const Cart = ()=> {
                     </div>
                     
                     <h2>Total: {total}</h2>  
-                    <Button>Pagar</Button>
+                    <Button disabled={!token}>Pagar</Button>
                 
             </div>
     )
