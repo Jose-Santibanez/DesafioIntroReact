@@ -17,8 +17,8 @@ export const CardPizza = ({ props })=>{
         navigate(`/Pizza/${props.id}`);  
     }
     useEffect(()=>{
-        getItemBase()
-    },[])
+        getItemBase(props.id)
+    },[props.id])
 
     return(
         <> 

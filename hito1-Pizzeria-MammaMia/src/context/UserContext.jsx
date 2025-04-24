@@ -39,8 +39,7 @@ export const UserProvider = ({children}) => {
       setError(errorTemps)
     }
 
-    
-   
+  
     return(
         <UserContext.Provider value={{token,handleLogout,email, pass, error, validarData, getEmail, getPass }}> 
             {children}

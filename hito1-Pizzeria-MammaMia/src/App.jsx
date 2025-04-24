@@ -20,7 +20,7 @@ import { LoginUser } from './components/LoginUser';
 function App() {
 
   const { token } = useContext(UserContext);  
-   
+   console.log(token)
   return  (
     <div className='contenedor'>
       
@@ -32,7 +32,7 @@ function App() {
                 <Route path='/' element={<Home />} />
                 <Route path='/registroForm' element={<FormRegistro />}/>
                 <Route path='/loginForm' element={<FormLogin />}/>
-                <Route path='/Profile' element={ token ? <LoginUser/> : <Navigate to='/loginForm' /> }/>
+                <Route path='/Profile' element={ !token ? <LoginUser/> : <Navigate to='/loginForm' /> }/>
                 <Route path='/Pizza/:id' element={<Pizza />}/>
                 <Route path='/Cart' element={<Cart />}/>
                 <Route path='*' element={<NotFound />}/>

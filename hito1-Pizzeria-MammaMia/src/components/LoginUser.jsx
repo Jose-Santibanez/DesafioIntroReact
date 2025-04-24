@@ -1,8 +1,12 @@
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { Button, Nav, NavLink } from "react-bootstrap"
 import { UserContext } from "../context/UserContext"
 export const LoginUser = ()=>{
-   const { handleLogout } = useContext(UserContext)
+   const { handleLogout} = useContext(UserContext)
+  
+  useEffect(()=>{
+    handleLogout()
+  },[])
     return(
         <>
            
