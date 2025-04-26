@@ -20,7 +20,7 @@ import { LoginUser } from './components/LoginUser';
 function App() {
 
   const { token } = useContext(UserContext);  
-   console.log(token)
+   
   return  (
     <div className='contenedor'>
       

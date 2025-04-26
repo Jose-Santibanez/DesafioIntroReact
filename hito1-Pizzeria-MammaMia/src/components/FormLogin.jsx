@@ -1,32 +1,30 @@
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { Form, Row, Col, Button } from "react-bootstrap";
 import { UserContext } from "../context/UserContext";
 
-
-
 export const FormLogin = () => {
-  /* const { email, pass, error,setEmail, setPass, validarData } = useContext(UserContext);
- */
- /*  const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
-  const [error, setError] = useState(""); */
-
-  const { email, getEmail,getPass, pass, validarData,error } = useContext(UserContext)
-  const emailDefault = 'validaCorreo@email.cl'
-  const passwordDefault  = 'password';
-
-  
-  /* const validarData = (e) => {
-    e.preventDefault(); // evitamos los comportamientos por defecto
-    console.log(e)
-    let errorTemps = {};
-    if(!email.trim()) errorTemps.email = "Campo obligatorio";   
-    else if(email !== emailDefault) errorTemps.email = "email no existe o es incorrecto"
-    if(!pass.trim()) errorTemps.pass = "Campo obligatorio";
-    else if(pass.length < 6) errorTemps.pass = "Contraseña debe tener mas de 6 caracteres"
-    else if( pass !== passwordDefault) errorTemps.pass = "Contraseña incorrecta"
-    setError(errorTemps)
-  } */
+ 
+  /* const { email, getEmail,getPass, pass, validarData } = useContext(UserContext) */
+  /* const [email , setEmail] = useState('');
+  const [password, setPassword] = useState(''); */
+const {getEmail, getPassword, validarData,email,password } = useContext(UserContext)
+ /*  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await fetch("http://localhost:5000/api/auth/login", {
+    method: "POST",
+    headers: {
+    "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+    email,
+    password,
+    }),
+    });
+    const data = await response.json();
+    alert(data?.error || "Authentication successful!");
+    localStorage.setItem("token", data.token);
+    }; */
+ 
   return (
     <div className="form-register">
         <div className="form-contenedor">
@@ -41,7 +39,7 @@ export const FormLogin = () => {
                                       type="text"
                                       placeholder="Ingrese email"
                                       value={email}/>
-                        {error.email && <span className="obligatorios">{error.email}</span>} 
+                       {/*  {error.email && <span className="obligatorios">{error.email}</span>}  */}
                     </Form.Group>
                 </Row>
                 <Row className="mt-3">
@@ -49,11 +47,11 @@ export const FormLogin = () => {
                         <Form.Label>Contraseña</Form.Label>
                     </Form.Group>
                     <Form.Group as={Col} md={8}>
-                        <Form.Control onChange={getPass} 
+                        <Form.Control onChange={getPassword} 
                         type="password"  
-                        value={pass}
+                        value={password}
                         placeholder="Ingrese contraseña"/>
-                        {error.pass && <span className="obligatorios">{error.pass}</span>} 
+                        {/* {error.pass && <span className="obligatorios">{error.pass}</span>}  */}
                     </Form.Group>
 
                 </Row>
