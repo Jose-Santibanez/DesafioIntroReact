@@ -4,26 +4,9 @@ import { UserContext } from "../context/UserContext";
 
 export const FormLogin = () => {
  
-  /* const { email, getEmail,getPass, pass, validarData } = useContext(UserContext) */
-  /* const [email , setEmail] = useState('');
-  const [password, setPassword] = useState(''); */
+
 const {getEmail, getPassword, validarData,email,password } = useContext(UserContext)
- /*  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const response = await fetch("http://localhost:5000/api/auth/login", {
-    method: "POST",
-    headers: {
-    "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-    email,
-    password,
-    }),
-    });
-    const data = await response.json();
-    alert(data?.error || "Authentication successful!");
-    localStorage.setItem("token", data.token);
-    }; */
+ 
  
   return (
     <div className="form-register">

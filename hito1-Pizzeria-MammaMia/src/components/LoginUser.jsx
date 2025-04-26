@@ -2,11 +2,11 @@ import { useContext, useEffect } from "react"
 import { Button, Nav, NavLink } from "react-bootstrap"
 import { UserContext } from "../context/UserContext"
 export const LoginUser = ()=>{
-   const { handleLogout} = useContext(UserContext)
-  
+   const { handleLogout, tokens} = useContext(UserContext)
+
   useEffect(()=>{
-    handleLogout()
-  },[])
+    handleLogout(tokens)
+  },[tokens])
     return(
         <>
            

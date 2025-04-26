@@ -1,36 +1,32 @@
-import {  useState } from "react";
+import {  useContext, useState } from "react";
 import { Form, Row, Col, Button} from "react-bootstrap";
+import { UserContext } from "../context/UserContext";
 
 export const FormRegistro = () => {
+
+    const { getEmail, getPassword, email,passsword, handleRegister} = useContext(UserContext)
     const [nombre, setNombre] = useState("");
-    const [email, setEmail] = useState("");
-    const [pass, setPass] = useState("")
+   /*  const [email, setEmail] = useState("");
+    const [pass, setPass] = useState("") */
     const [repPass, setRepPass] = useState("");
     const [error, setError] = useState({}); // se inicializa un objeto vacío para cada uno de los campos.
 
-    const validarData = (e) => {
+    /* const validarData = (e) => {
         e.preventDefault();
         let errorTemps = {}; //declaramos un objeto vacio para los errores
-        
         if(!nombre.trim()) errorTemps.nombre = "el nombre es obligatorio";
         if(!email.trim()) errorTemps.email = "El email es obligario";
         if(!pass.trim()) errorTemps.pass = "La contraseña es obligatoria";
         else if(pass.length < 6) errorTemps.pass = "La contraseña debe tener más de 6 caracteres";
         if(!repPass.trim()) errorTemps.repPass = "Repetir la contraseña es obligatorio";
         else if(pass !== repPass) errorTemps.repPass = "Las contraseñas deben ser estrictamente identicas";
-
-        setError(errorTemps);
-       /*  if(setError !== 0){
-
-        } */
-        
-    }
-
+        setError(errorTemps); 
+    } */
      return (
         <div className="form-register">
             <div className="form-contenedor"  >
 
-                <Form className="form" onSubmit={validarData}>
+                <Form className="form" onSubmit={handleRegister}>
                 <h1>Registro</h1>
                
                     <Row className="mt-2"  >
@@ -40,7 +36,7 @@ export const FormRegistro = () => {
                         
                         </Form.Group>
                         <Form.Group as={Col} md={8}>
-                            <Form.Control onChange={(e) => setNombre(e.target.value)} 
+                            <Form.Control onChange={(e)=>setNombre(e.target.value)} 
                                         type="text" 
                                         value={nombre} //componente controlado= 
                                         placeholder="Ingrese Nombre Completo"
@@ -53,7 +49,7 @@ export const FormRegistro = () => {
                             <Form.Label >Email</Form.Label> 
                         </Form.Group>
                         <Form.Group as={Col} md={8}>
-                            <Form.Control onChange={(e) => setEmail(e.target.value)} 
+                            <Form.Control onChange={getEmail} 
                                           type="text" 
                                           value={email}    
                                           placeholder="Ingrese Email"/>
@@ -65,9 +61,9 @@ export const FormRegistro = () => {
                             <Form.Label >Contraseña</Form.Label> 
                         </Form.Group>
                         <Form.Group as={Col} md={8}>
-                            <Form.Control onChange={(e)=> setPass(e.target.value)} 
+                            <Form.Control onChange={getPassword} 
                                           type="password" 
-                                          value={pass}
+                                          value={passsword}
                                           placeholder="Ingrese contraseña"/>
                             {error.pass && <span className="obligatorios">{error.pass}</span>}
                         </Form.Group>

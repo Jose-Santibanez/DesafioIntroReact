@@ -9,11 +9,11 @@ import { UserContext } from "../context/UserContext";
 export const NavBar = ()=> {
 
     const{total} = useContext(CartContext);
-   const {token} = useContext(UserContext);
+   const {tokens} = useContext(UserContext);
     
     const sepTotal = total.toLocaleString("es-Es")
    
-    const logUser = token ? <LoginUser/>: <LogoutUser/>;
+    const logUser = tokens ? <LoginUser/>: <LogoutUser/>;
     return (
         <div className="barra">
            <div> 

@@ -5,29 +5,30 @@ export const UserContext = createContext()
 
 
 export const UserProvider = ({children}) => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
-   /*  const [ token, setToken] = useState(true);   */
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [ tokens, setTokens] = useState('');  
     
     
   
     const handleLogout =()=>{
-       /*  setToken(false) */
+         localStorage.removeItem('token')
+        
+        setEmail('') 
     }
-
+    
     const getEmail = (e) =>{
         setEmail(e.target.value)
-        console.log(email)
+     
     }
     const getPassword = (e)=>{
         setPassword(e.target.value)
-        console.log(password)
+        
     }
     
     const validarData = async(e) => {
       e.preventDefault(); // evitamos los comportamientos por defecto
-      
       const response = await fetch("http://localhost:5000/api/auth/login", {
       method: "POST",
       headers: {
@@ -39,12 +40,9 @@ export const UserProvider = ({children}) => {
       }),
       });
       const data = await response.json();
-      alert(data?.error || "Authentication successful!");
+      alert(data?.error || "autenticación exitosa");
       localStorage.setItem("token", data.token);
-
-
-
-
+      setTokens(localStorage.getItem('token'))
 
      /*  let errorTemps = {};
       if(!email.trim()) errorTemps.email = "Campo obligatorio";   
@@ -54,10 +52,29 @@ export const UserProvider = ({children}) => {
       else if( pass !== passwordDefault) errorTemps.pass = "Contraseña incorrecta"
       setError(errorTemps) */
     };
-
-  
+    
+    const handleRegister = async (e) =>{
+        e.preventDefault() // evitamos el comportamiento por defecto del evento
+        const response = await fetch("http://localhost:5000/api/auth/register", {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+            email,
+            password,
+            }),
+            });
+            const data = await response.json();
+            alert(data?.error || "registro exitoso");
+            localStorage.setItem("token", data.token);
+    }
+    
+    useEffect(()=>{
+        handleLogout()
+    },[])
     return(
-        <UserContext.Provider value={{handleLogout,email, password, error, validarData, getEmail, getPassword,setEmail, setPassword }}> 
+        <UserContext.Provider value={{handleRegister, handleLogout, email, password, error, validarData, getEmail, getPassword,setEmail, setPassword, tokens }}> 
             {children}
         </UserContext.Provider>
     )
