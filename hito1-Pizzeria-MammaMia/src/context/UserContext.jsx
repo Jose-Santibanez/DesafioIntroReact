@@ -9,24 +9,20 @@ export const UserProvider = ({children}) => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [ tokens, setTokens] = useState('');  
-    
-    
-  
-    const handleLogout =()=>{
-         localStorage.removeItem('token')
-        
-        setEmail('') 
-    }
-    
+
     const getEmail = (e) =>{
-        setEmail(e.target.value)
-     
+        setEmail(e.target.value)  
     }
     const getPassword = (e)=>{
-        setPassword(e.target.value)
-        
+        setPassword(e.target.value)   
     }
-    
+
+    const validarTokensExistente =()=> {
+        const tokenExistente = localStorage.getItem('token');
+        if(tokenExistente){
+            setTokens(tokenExistente)
+        }
+    }
     const validarData = async(e) => {
       e.preventDefault(); // evitamos los comportamientos por defecto
       const response = await fetch("http://localhost:5000/api/auth/login", {
@@ -43,7 +39,6 @@ export const UserProvider = ({children}) => {
       alert(data?.error || "autenticación exitosa");
       localStorage.setItem("token", data.token);
       setTokens(localStorage.getItem('token'))
-
      /*  let errorTemps = {};
       if(!email.trim()) errorTemps.email = "Campo obligatorio";   
       else if(email !== emailDefault) errorTemps.email = "email no existe o es incorrecto"
@@ -52,7 +47,6 @@ export const UserProvider = ({children}) => {
       else if( pass !== passwordDefault) errorTemps.pass = "Contraseña incorrecta"
       setError(errorTemps) */
     };
-    
     const handleRegister = async (e) =>{
         e.preventDefault() // evitamos el comportamiento por defecto del evento
         const response = await fetch("http://localhost:5000/api/auth/register", {
@@ -69,12 +63,17 @@ export const UserProvider = ({children}) => {
             alert(data?.error || "registro exitoso");
             localStorage.setItem("token", data.token);
     }
-    
+
+    const handleLogout = ( ) =>{
+        setTokens(localStorage.removeItem('token'))
+        setEmail('');
+        setPassword('');
+    }
     useEffect(()=>{
-        handleLogout()
+        validarTokensExistente()
     },[])
     return(
-        <UserContext.Provider value={{handleRegister, handleLogout, email, password, error, validarData, getEmail, getPassword,setEmail, setPassword, tokens }}> 
+        <UserContext.Provider value={{handleLogout ,handleRegister, email, password, error, validarData, getEmail, getPassword,setEmail, setPassword, tokens }}> 
             {children}
         </UserContext.Provider>
     )
