@@ -1,4 +1,4 @@
-import { createContext, use, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import {  useNavigate } from "react-router-dom";
 import { Cart } from "../components/Cart";
 
@@ -23,6 +23,7 @@ export const UserProvider = ({children}) => {
         const tokenExistente = localStorage.getItem('token');
         if(tokenExistente){
             setTokens(tokenExistente)
+            setUser(tokenExistente)
         }
     }
     const validarData = async(e) => {
@@ -41,6 +42,7 @@ export const UserProvider = ({children}) => {
         localStorage.setItem("token", data.token);
         setTokens(data.token)
         navigate('/profile',{replace : true})
+        setUser(data)
       }else{
         alert(data.error || 'Error al iniciar sesión')
       }
@@ -55,7 +57,7 @@ export const UserProvider = ({children}) => {
       else if( pass !== passwordDefault) errorTemps.pass = "Contraseña incorrecta"
       setError(errorTemps) */
     };
-    
+
     const handleRegister = async (e) =>{
         e.preventDefault() // evitamos el comportamiento por defecto del evento
         const response = await fetch("http://localhost:5000/api/auth/register", {
@@ -73,26 +75,34 @@ export const UserProvider = ({children}) => {
             localStorage.setItem("token", data.token);
     }
     //Metodo para acceder al perfil del usuario
-    const inicioSesion =  ( ) =>{
-        const token = localStorage.getItem('token')
-        if(token){
-            fetch("http://localhost:5000/api/auth/me",
-                {
-                    headers: {
-                    Authorization: `Bearer ${token}`,
-                    },
-                    })
-                    .then((response) => response.json())
-                    .then((data) => setUser(data));   
+      // Obtener datos del usuario logueado
+    const inicioSesion = async () => {
+        const token = localStorage.getItem('token');
+        if (token) {
+        try {
+            const response = await fetch("http://localhost:5000/api/auth/me", {
+            headers: { Authorization: `Bearer ${token}` },
+            });
+            if (response.ok) {
+            const data = await response.json();
+            setUser(data);
+            } else {
+            console.error("Token inválido o expirado");
+            handleLogout();
+            }
+        } catch (error) {
+            console.error("Error al obtener el perfil:", error);
         }
-       
-    }
+        }
+    };
 
     // Método para limpiar el localStorage y limpiar los estados  EMAIL - PASS
     const handleLogout = ( ) =>{
-        setTokens(localStorage.removeItem('token'))
+        localStorage.removeItem('token')
+        setTokens('')
         setEmail('');
         setPassword('');
+        navigate('/',{replce: true})
     }
 
     useEffect(()=>{
