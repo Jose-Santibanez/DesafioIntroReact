@@ -7,7 +7,7 @@ import { UserContext } from '../context/UserContext';
 
 export const Profile = () => {
 
-    const { user } = useContext(UserContext)
+    const { user,handleLogout } = useContext(UserContext)
     
   return (
     <div className='contenedor-profile'> 
@@ -16,7 +16,7 @@ export const Profile = () => {
         <Card.Body>
             <Card.Title >Email:{user.email}</Card.Title>
             <Card.Text>Perfil de usario encontrado</Card.Text>
-            <Button>Cerrar Sesion</Button>
+            <Button onClick={handleLogout}>Cerrar Sesion</Button>
         </Card.Body>
     </Card>
     </div>

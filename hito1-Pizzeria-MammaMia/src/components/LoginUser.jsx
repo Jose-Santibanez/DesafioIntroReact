@@ -1,5 +1,6 @@
 import { useContext } from "react"
-import { Button, Nav, NavLink } from "react-bootstrap"
+import { Button, Nav } from "react-bootstrap"
+import { NavLink } from "react-router-dom"
 import { UserContext } from "../context/UserContext"
 
 export const LoginUser = ()=>{

@@ -39,8 +39,8 @@ export const UserProvider = ({children}) => {
       const data = await response.json();
       alert(data?.error || "autenticación exitosa");
       localStorage.setItem("token", data.token);
-      navigate('/profile',{replace : true})
       setTokens(localStorage.getItem('token'))
+      navigate('/profile',{replace : true})
       
       
      /*  let errorTemps = {};
