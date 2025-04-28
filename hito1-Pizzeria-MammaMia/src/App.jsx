@@ -12,14 +12,15 @@ import { NotFound } from './components/NotFound';
 import { CartProvider } from './context/CartContext';
 import { PizzaProvider } from './context/PizzaContext'; 
 import { UserContext } from './context/UserContext';
-import { useContext } from 'react';
-import { LogoutUser } from './components/LogoutUser';
-import { LoginUser } from './components/LoginUser';
+import { useContext} from 'react';
+
+import { Profile } from './components/Profile';
 
 
 function App() {
 
-  const { tokens } = useContext(UserContext);  
+  let { tokens } = useContext(UserContext);
+
   
   return  (
     <div className='contenedor'>
@@ -32,7 +33,7 @@ function App() {
                 <Route path='/' element={<Home />} />
                 <Route path='/registroForm' element={<FormRegistro />}/>
                 <Route path='/loginForm' element={<FormLogin />}/>
-                <Route path='/Profile' element={ !tokens ? <LoginUser/> : <Navigate to='/loginForm' /> }/>
+                <Route path='/profile' element={ tokens ? (< Profile />) : (<Navigate to='/loginForm' />) }/>
                 <Route path='/Pizza/:id' element={<Pizza />}/>
                 <Route path='/Cart' element={<Cart />}/>
                 <Route path='*' element={<NotFound />}/>

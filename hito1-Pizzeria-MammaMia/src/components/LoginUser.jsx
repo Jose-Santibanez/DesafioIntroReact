@@ -1,6 +1,7 @@
-import { useContext, useEffect } from "react"
+import { useContext } from "react"
 import { Button, Nav, NavLink } from "react-bootstrap"
 import { UserContext } from "../context/UserContext"
+
 export const LoginUser = ()=>{
    const { handleLogout} = useContext(UserContext)
 
@@ -8,9 +9,12 @@ export const LoginUser = ()=>{
     return(
         <>
            
-            <Nav.Link as={NavLink} to="/Profile" className="links">Profile</Nav.Link> 
+             <Nav className="me-auto" >
+             <Nav.Link as={NavLink} to="/profile" className="links links">profile</Nav.Link>
+             </Nav>
             <Button  onClick={handleLogout}className="links">Log Out</Button>
         </>
+
     )
     
 }

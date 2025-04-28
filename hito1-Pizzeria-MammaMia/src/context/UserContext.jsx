@@ -1,5 +1,5 @@
 import { createContext, use, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { replace, useNavigate } from "react-router-dom";
 
 export const UserContext = createContext()
 
@@ -9,6 +9,8 @@ export const UserProvider = ({children}) => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [ tokens, setTokens] = useState('');  
+    const [user, setUser] = useState(null);
+    const navigate = useNavigate()
 
     const getEmail = (e) =>{
         setEmail(e.target.value)  
@@ -16,7 +18,6 @@ export const UserProvider = ({children}) => {
     const getPassword = (e)=>{
         setPassword(e.target.value)   
     }
-
     const validarTokensExistente =()=> {
         const tokenExistente = localStorage.getItem('token');
         if(tokenExistente){
@@ -38,7 +39,10 @@ export const UserProvider = ({children}) => {
       const data = await response.json();
       alert(data?.error || "autenticación exitosa");
       localStorage.setItem("token", data.token);
+      navigate('/profile',{replace : true})
       setTokens(localStorage.getItem('token'))
+      
+      
      /*  let errorTemps = {};
       if(!email.trim()) errorTemps.email = "Campo obligatorio";   
       else if(email !== emailDefault) errorTemps.email = "email no existe o es incorrecto"
@@ -63,17 +67,37 @@ export const UserProvider = ({children}) => {
             alert(data?.error || "registro exitoso");
             localStorage.setItem("token", data.token);
     }
+    //Metodo para acceder al perfil del usuario
+    const inicioSesion =  ( ) =>{
+        const token = localStorage.getItem('token')
+        if(token){
+            fetch("http://localhost:5000/api/auth/me",
+                {
+                    headers: {
+                    Authorization: `Bearer ${token}`,
+                    },
+                    })
+                    .then((response) => response.json())
+                    .then((data) => setUser(data));   
+        }
+       
+    }
 
+    // Método para limpiar el localStorage y limpiar los estados  EMAIL - PASS
     const handleLogout = ( ) =>{
         setTokens(localStorage.removeItem('token'))
         setEmail('');
         setPassword('');
     }
+
     useEffect(()=>{
         validarTokensExistente()
+             
+        inicioSesion()
     },[])
+
     return(
-        <UserContext.Provider value={{handleLogout ,handleRegister, email, password, error, validarData, getEmail, getPassword,setEmail, setPassword, tokens }}> 
+        <UserContext.Provider value={{ handleLogout ,handleRegister, email, password, error, validarData, getEmail, getPassword,setEmail, setPassword, tokens,user }}> 
             {children}
         </UserContext.Provider>
     )

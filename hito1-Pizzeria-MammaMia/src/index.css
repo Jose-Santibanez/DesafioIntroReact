@@ -330,3 +330,11 @@ footer p{
     height: 100%;
 
 }
+.contenedor-profile{
+  color: black;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

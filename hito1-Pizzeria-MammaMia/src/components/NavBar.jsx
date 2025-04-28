@@ -23,6 +23,7 @@ export const NavBar = ()=> {
                         <Navbar.Brand as={NavLink} to="/" >Pizzería Mamma Mia!</Navbar.Brand>
                         <Nav className="me-auto" >
                             <Nav.Link as={NavLink} to="/" className="links links">Home</Nav.Link>
+                            
                             {logUser}
                             
                         </Nav>
