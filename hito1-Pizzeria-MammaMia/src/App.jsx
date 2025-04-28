@@ -20,13 +20,13 @@ import { Profile } from './components/Profile';
 function App() {
   
    const navigate = useNavigate();
-  let { user } = useContext(UserContext);
-  useEffect(()=>{
-    const token = localStorage.getItem('token')
-    if(token){
-      navigate('/profile',{replace : true})
-    }
-  },[])
+    let { user } = useContext(UserContext);
+    useEffect(()=>{
+      const token = localStorage.getItem('token')
+      if(token){
+        navigate('/profile',{replace : true})
+      }
+    },[])
   
   return  (
     <div className='contenedor'>

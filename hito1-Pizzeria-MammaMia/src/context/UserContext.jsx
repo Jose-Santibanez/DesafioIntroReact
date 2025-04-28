@@ -1,5 +1,6 @@
 import { createContext, use, useEffect, useState } from "react";
-import { replace, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
+import { Cart } from "../components/Cart";
 
 export const UserContext = createContext()
 
@@ -26,23 +27,26 @@ export const UserProvider = ({children}) => {
     }
     const validarData = async(e) => {
       e.preventDefault(); // evitamos los comportamientos por defecto
-      const response = await fetch("http://localhost:5000/api/auth/login", {
-      method: "POST",
-      headers: {
-      "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-      email,
-      password,
-      }),
-      });
+       try{     
+            const response = await fetch("http://localhost:5000/api/auth/login", {
+                method: "POST",
+                headers: {"Content-Type": "application/json",  },
+                body: JSON.stringify({email, password,}),
+                });
+
       const data = await response.json();
-      alert(data?.error || "autenticación exitosa");
-      localStorage.setItem("token", data.token);
-      setTokens(localStorage.getItem('token'))
-      navigate('/profile',{replace : true})
-      
-      
+      /* alert(data?.error || "autenticación exitosa"); */
+      if(response.ok){
+        alert('Autenticación exitosa')
+        localStorage.setItem("token", data.token);
+        setTokens(data.token)
+        navigate('/profile',{replace : true})
+      }else{
+        alert(data.error || 'Error al iniciar sesión')
+      }
+    }catch(error){
+        console.error('Error en la autenticación', error)
+    }
      /*  let errorTemps = {};
       if(!email.trim()) errorTemps.email = "Campo obligatorio";   
       else if(email !== emailDefault) errorTemps.email = "email no existe o es incorrecto"
@@ -51,6 +55,7 @@ export const UserProvider = ({children}) => {
       else if( pass !== passwordDefault) errorTemps.pass = "Contraseña incorrecta"
       setError(errorTemps) */
     };
+    
     const handleRegister = async (e) =>{
         e.preventDefault() // evitamos el comportamiento por defecto del evento
         const response = await fetch("http://localhost:5000/api/auth/register", {
