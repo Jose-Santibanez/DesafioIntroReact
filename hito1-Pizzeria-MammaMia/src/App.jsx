@@ -12,14 +12,14 @@ import { NotFound } from './components/NotFound';
 import { CartProvider } from './context/CartContext';
 import { PizzaProvider } from './context/PizzaContext'; 
 import { UserContext } from './context/UserContext';
-import { useContext, useEffect} from 'react';
+import { useContext} from 'react';
 
 import { Profile } from './components/Profile';
 
 
 function App() {
   
-   const navigate = useNavigate();
+  
     let { user } = useContext(UserContext);
   return  (
     <div className='contenedor'>

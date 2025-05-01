@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import {  useNavigate } from "react-router-dom";
-import { Cart } from "../components/Cart";
+
 
 export const UserContext = createContext()
 
@@ -57,7 +57,15 @@ export const UserProvider = ({children}) => {
       else if( pass !== passwordDefault) errorTemps.pass = "Contraseña incorrecta"
       setError(errorTemps) */
     };
-
+  
+    // Método para limpiar el localStorage y limpiar los estados  EMAIL - PASS
+    const handleLogout = ( ) =>{
+        localStorage.removeItem('token')
+        setTokens('')
+        setEmail('');
+        setPassword('');
+        navigate('/',{replce: true})
+    }
     const handleRegister = async (e) =>{
         e.preventDefault() // evitamos el comportamiento por defecto del evento
         const response = await fetch("http://localhost:5000/api/auth/register", {
@@ -74,9 +82,37 @@ export const UserProvider = ({children}) => {
             alert(data?.error || "registro exitoso");
             localStorage.setItem("token", data.token);
     }
+    // Método Pagar realizar la compra
+    const pagarCarrito = async (cart)=> {
+        const token = localStorage.getItem("token");
+        console.log(cart)
+    try{
+        const response = await fetch("http://localhost:5000/api/checkouts", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ cart }),
+        });
+        
+        const data = await response.json();
+        console.log('estos es',data)
+        /* if (response.ok) {
+          alert("✅ Compra realizada con éxito.");
+          
+        } else {
+          alert(`❌ Error: ${data?.error || "Error en la compra."}`);
+        } */
+      } catch (error) {
+        console.error("Error al enviar el carrito:", error);
+        alert("❌ Error de red al procesar la compra.");
+      }
+    };
     //Metodo para acceder al perfil del usuario
       // Obtener datos del usuario logueado
-    const inicioSesion = async () => {
+      const inicioSesion = async () => {
+       
         const token = localStorage.getItem('token');
         if (token) {
         try {
@@ -95,23 +131,13 @@ export const UserProvider = ({children}) => {
         }
         }
     };
-
-    // Método para limpiar el localStorage y limpiar los estados  EMAIL - PASS
-    const handleLogout = ( ) =>{
-        localStorage.removeItem('token')
-        setTokens('')
-        setEmail('');
-        setPassword('');
-        navigate('/',{replce: true})
-    }
-
     useEffect(()=>{
         validarTokensExistente()
         inicioSesion()
     },[])
 
     return(
-        <UserContext.Provider value={{ handleLogout ,handleRegister, email, password, error, validarData, getEmail, getPassword,setEmail, setPassword, tokens,user }}> 
+        <UserContext.Provider value={{ pagarCarrito,handleLogout ,handleRegister, email, password, error, validarData, getEmail, getPassword,setEmail, setPassword, tokens,user }}> 
             {children}
         </UserContext.Provider>
     )

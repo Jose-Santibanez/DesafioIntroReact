@@ -5,7 +5,7 @@ import { UserContext } from "../context/UserContext"
 
 export const Cart = ()=> {
     const {cart,total, handleItems, eliminaItem } = useContext(CartContext)
-    const { tokens  } = useContext(UserContext);
+    const { tokens,pagarCarrito  } = useContext(UserContext);
     
     return(
             <div className="contenedor-cart">
@@ -27,7 +27,7 @@ export const Cart = ()=> {
                     </div>
                     
                     <h2>Total: {total}</h2>  
-                    <Button disabled={!tokens}>Pagar</Button>
+                    <Button disabled={!tokens} onClick={()=>pagarCarrito(cart)}>Pagar</Button>
                 
             </div>
     )
