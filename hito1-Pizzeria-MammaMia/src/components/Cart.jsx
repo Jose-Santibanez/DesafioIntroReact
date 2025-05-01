@@ -4,7 +4,7 @@ import { CartContext } from "../context/CartContext"
 import { UserContext } from "../context/UserContext"
 
 export const Cart = ()=> {
-    const {cart,total, handleItems, eliminaItem } = useContext(CartContext)
+    const { cart, total, handleItems, eliminaItem } = useContext(CartContext)
     const { tokens,pagarCarrito  } = useContext(UserContext);
     
     return(

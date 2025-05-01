@@ -85,7 +85,7 @@ export const UserProvider = ({children}) => {
     // Método Pagar realizar la compra
     const pagarCarrito = async (cart)=> {
         const token = localStorage.getItem("token");
-        console.log(cart)
+        
     try{
         const response = await fetch("http://localhost:5000/api/checkouts", {
           method: "POST",
@@ -97,16 +97,16 @@ export const UserProvider = ({children}) => {
         });
         
         const data = await response.json();
-        console.log('estos es',data)
-        /* if (response.ok) {
-          alert("✅ Compra realizada con éxito.");
+       
+        if (response.ok) {
+          alert("Compra realizada con éxito.");
           
         } else {
-          alert(`❌ Error: ${data?.error || "Error en la compra."}`);
-        } */
+          alert(`Error: ${data?.error || "Error en la compra."}`);
+        } 
       } catch (error) {
         console.error("Error al enviar el carrito:", error);
-        alert("❌ Error de red al procesar la compra.");
+        alert("Error de red al procesar la compra.");
       }
     };
     //Metodo para acceder al perfil del usuario
