@@ -7,6 +7,7 @@ export const Cart = ()=> {
     const { cart, total, handleItems, eliminaItem } = useContext(CartContext)
     const { tokens,pagarCarrito  } = useContext(UserContext);
     
+
     return(
             <div className="contenedor-cart">
                     <h3>

@@ -24,8 +24,8 @@ function App() {
   return  (
     <div className='contenedor'>
       
-       <PizzaProvider>
-        <CartProvider>
+       
+       
           <NavBar />
           <Footer/>
               <Routes>
@@ -36,9 +36,10 @@ function App() {
                 <Route path='/Pizza/:id' element={<Pizza />}/>
                 <Route path='/Cart' element={<Cart />}/>
                 <Route path='*' element={<NotFound />}/>
-              </Routes> 
-        </CartProvider>
-      </PizzaProvider>   
+              </Routes>
+    
+
+     
     
       
      

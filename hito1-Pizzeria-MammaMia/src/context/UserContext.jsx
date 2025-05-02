@@ -1,5 +1,6 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import {  useNavigate } from "react-router-dom";
+import { CartContext } from "./CartContext";
 
 
 export const UserContext = createContext()
@@ -11,8 +12,9 @@ export const UserProvider = ({children}) => {
     const [error, setError] = useState('');
     const [ tokens, setTokens] = useState('');  
     const [user, setUser] = useState(null);
+    const { setCart } = useContext(CartContext)
     const navigate = useNavigate()
-
+  
     const getEmail = (e) =>{
         setEmail(e.target.value)  
     }
@@ -97,10 +99,10 @@ export const UserProvider = ({children}) => {
         });
         
         const data = await response.json();
-       
+        
         if (response.ok) {
           alert("Compra realizada con éxito.");
-          
+          setCart([])
         } else {
           alert(`Error: ${data?.error || "Error en la compra."}`);
         } 
